@@ -2,11 +2,11 @@ package {
 
 import com.tuarua.FacebookANE;
 import com.tuarua.facebook.AccessToken;
-import com.tuarua.facebook.AccessTokenSource;
 import com.tuarua.facebook.FacebookError;
 import com.tuarua.facebook.LoginBehavior;
 import com.tuarua.facebook.LoginManager;
 import com.tuarua.facebook.LoginResult;
+import com.tuarua.facebook.ShareLinkContent;
 
 import flash.desktop.NativeApplication;
 import flash.events.Event;
@@ -25,6 +25,7 @@ public class StarlingRoot extends Sprite {
     private var btnGetAccessToken:SimpleButton = new SimpleButton("Get Access Token");
     private var btnRefreshToken:SimpleButton = new SimpleButton("Refresh Token");
     private var btnLogout:SimpleButton = new SimpleButton("Logout");
+    private var btnShare:SimpleButton = new SimpleButton("Share");
     private var loginManager:LoginManager;
     private var statusLabel:TextField;
 
@@ -43,8 +44,12 @@ public class StarlingRoot extends Sprite {
     }
 
     private function initMenu():void {
+        btnShare.x = (stage.stageWidth - 200) * 0.5;
+        btnShare.y = 25;
+        btnShare.addEventListener(TouchEvent.TOUCH, onShareClick);
+
         btnLogin.x = (stage.stageWidth - 200) * 0.5;
-        btnLogin.y = 25;
+        btnLogin.y = btnShare.y + 75;
         btnLogin.addEventListener(TouchEvent.TOUCH, onLoginClick);
 
         btnRefreshToken.x = (stage.stageWidth - 200) * 0.5;
@@ -62,6 +67,7 @@ public class StarlingRoot extends Sprite {
         btnLogout.addEventListener(TouchEvent.TOUCH, onLogoutClick);
         btnLogout.visible = false;
 
+        addChild(btnShare);
         addChild(btnLogin);
         addChild(btnRefreshToken);
         addChild(btnGetAccessToken);
@@ -73,6 +79,15 @@ public class StarlingRoot extends Sprite {
         statusLabel.y = btnLogout.y + 75;
         addChild(statusLabel);
 
+    }
+
+    private function onShareClick(event:TouchEvent):void {
+        var touch:Touch = event.getTouch(btnShare);
+        if (touch != null && touch.phase == TouchPhase.ENDED) {
+            var shareLinkContent:ShareLinkContent = new ShareLinkContent();
+            shareLinkContent.contentUrl = "https://www.google.com";
+            FacebookANE.share(shareLinkContent, onShareSuccess, onShareCancel, onShareError);
+        }
     }
 
     private function onGetAccessTokenClick(event:TouchEvent):void {
@@ -151,20 +166,30 @@ public class StarlingRoot extends Sprite {
     }
 
     private function onLoginError(error:FacebookError):void {
-        trace("onLoginError");
         statusLabel.text = "Error: " + error.message;
     }
 
     private function onLoginCancel():void {
-        trace("onLoginCancel");
         statusLabel.text = "Login Cancelled";
     }
 
     private function onLoginSuccess(loginResult:LoginResult):void {
-        trace("onLoginSuccess");
         btnGetAccessToken.visible = btnLogout.visible = btnRefreshToken.visible = true;
         statusLabel.text = "Login Success \n";
         trace(loginResult.accessToken.token);
+    }
+
+    private function onShareError(error:FacebookError):void {
+        statusLabel.text = "Error: " + error.message;
+    }
+
+    private function onShareCancel():void {
+        statusLabel.text = "Share Cancelled";
+    }
+
+    private function onShareSuccess(postId:String):void {
+        statusLabel.text = "Share Success";
+        trace("postId:", postId);
     }
 
     private function onCurrentAccessTokenChanged(oldToken:AccessToken, newToken:AccessToken):void {

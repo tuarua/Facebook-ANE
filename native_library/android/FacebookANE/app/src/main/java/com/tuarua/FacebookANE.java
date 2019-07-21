@@ -45,6 +45,7 @@ public class FacebookANE implements FREExtension {
             ,"refreshCurrentAccessTokenAsync"
             ,"isCurrentAccessTokenActive"
             ,"isDataAccessActive"
+            ,"share"
     };
 
     public static FacebookANEContext extensionContext;

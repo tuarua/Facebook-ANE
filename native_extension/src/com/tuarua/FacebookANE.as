@@ -15,6 +15,7 @@
  */
 package com.tuarua {
 import com.tuarua.facebook.LoginManager;
+import com.tuarua.facebook.ShareLinkContent;
 import com.tuarua.fre.ANEError;
 
 public class FacebookANE {
@@ -138,6 +139,15 @@ public class FacebookANE {
         var theRet:* = FacebookANEContext.context.call("isInitialized");
         if (theRet is ANEError) throw theRet as ANEError;
         return theRet as Boolean;
+    }
+
+    public static function share(shareLinkContent:ShareLinkContent, onSuccess:Function,
+                                 onCancel:Function, onError:Function, dialogType:uint = 0):void {
+        var theRet:* = FacebookANEContext.context.call("share", shareLinkContent, dialogType,  
+                FacebookANEContext.createEventId(onSuccess),
+                FacebookANEContext.createEventId(onCancel),
+                FacebookANEContext.createEventId(onError));
+        if (theRet is ANEError) throw theRet as ANEError;
     }
 
     /**

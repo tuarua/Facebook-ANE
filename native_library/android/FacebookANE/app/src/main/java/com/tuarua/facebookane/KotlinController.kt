@@ -21,6 +21,7 @@ import com.adobe.fre.FREContext
 import com.adobe.fre.FREObject
 import com.tuarua.frekotlin.*
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.util.Base64
 import com.facebook.*
 import com.facebook.login.DefaultAudience
@@ -33,6 +34,12 @@ import com.tuarua.facebookane.data.FacebookEvent
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import com.facebook.FacebookCallback
+import com.facebook.share.Sharer
+import com.facebook.share.model.ShareHashtag
+import com.facebook.share.model.ShareLinkContent
+import com.facebook.share.widget.MessageDialog
+import com.facebook.share.widget.ShareDialog
+import com.tuarua.facebookane.extensions.ShareLinkContent
 import java.util.*
 
 
@@ -146,7 +153,7 @@ class KotlinController : FreKotlinMainController {
         val onCancelEventId = String(argv[3]) ?: return null
         val onErrorEventId = String(argv[4]) ?: return null
 
-        LoginManager.getInstance().registerCallback(this.callbackManager, object : FacebookCallback<LoginResult> {
+        LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 dispatchEvent(FacebookEvent.ON_LOGIN_SUCCESS,
                         Gson().toJson(FacebookEvent(onSuccessEventId,
@@ -154,12 +161,14 @@ class KotlinController : FreKotlinMainController {
                                         "recentlyGrantedPermissions" to loginResult.recentlyGrantedPermissions,
                                         "recentlyDeniedPermissions" to loginResult.recentlyDeniedPermissions)))
                 )
+                LoginManager.getInstance().unregisterCallback(callbackManager)
             }
 
             override fun onCancel() {
                 dispatchEvent(FacebookEvent.ON_LOGIN_CANCEL,
                         Gson().toJson(FacebookEvent(onCancelEventId))
                 )
+                LoginManager.getInstance().unregisterCallback(callbackManager)
             }
 
             override fun onError(error: FacebookException) {
@@ -168,6 +177,7 @@ class KotlinController : FreKotlinMainController {
                                 mapOf("message" to error.localizedMessage))
                         )
                 )
+                LoginManager.getInstance().unregisterCallback(callbackManager)
             }
         })
         if (withPublish) LoginManager.getInstance().logInWithPublishPermissions(activity, permissions)
@@ -254,7 +264,6 @@ class KotlinController : FreKotlinMainController {
         return AccessToken.isDataAccessActive().toFREObject()
     }
 
-
     private fun loggingBehaviorFromInt(value: Int): LoggingBehavior {
         return when (value) {
             0 -> LoggingBehavior.REQUESTS
@@ -267,6 +276,63 @@ class KotlinController : FreKotlinMainController {
             7 -> LoggingBehavior.GRAPH_API_DEBUG_INFO
             else -> LoggingBehavior.REQUESTS
         }
+    }
+
+    // Share
+    fun share(ctx: FREContext, argv: FREArgv): FREObject? {
+        argv.takeIf { argv.size > 4 } ?: return FreArgException("setDefaultAudience")
+        val content = ShareLinkContent(argv[0])
+        val onSuccessEventId = String(argv[2]) ?: return null
+        val onCancelEventId = String(argv[3]) ?: return null
+        val onErrorEventId = String(argv[4]) ?: return null
+
+        when (Int(argv[1]) ?: return null) {
+            0 -> {
+                val shareDialog = ShareDialog(activity);
+                shareDialog.registerCallback(callbackManager, object : FacebookCallback<Sharer.Result> {
+                    override fun onSuccess(result: Sharer.Result?) {
+                        dispatchEvent(FacebookEvent.ON_SHARE_SUCCESS,
+                                Gson().toJson(FacebookEvent(onSuccessEventId,
+                                        mapOf("postId" to result?.postId)))
+                        )
+                        shareDialog.registerCallback(callbackManager, null)
+                    }
+
+                    override fun onCancel() {
+                        dispatchEvent(FacebookEvent.ON_SHARE_CANCEL,
+                                Gson().toJson(FacebookEvent(onCancelEventId))
+                        )
+                        shareDialog.registerCallback(callbackManager, null)
+                    }
+
+                    override fun onError(error: FacebookException?) {
+                        dispatchEvent(FacebookEvent.ON_SHARE_ERROR,
+                                Gson().toJson(FacebookEvent(onErrorEventId,
+                                        mapOf("message" to error?.localizedMessage))
+                                )
+                        )
+                        shareDialog.registerCallback(callbackManager, null)
+                    }
+                })
+                if (ShareDialog.canShow(ShareLinkContent::class.java)) {
+                    shareDialog.show(content)
+                } else {
+                    trace("ShareDialog.canShow is false")
+                    shareDialog.registerCallback(callbackManager, null)
+                }
+            }
+            1 -> {
+                if (MessageDialog.canShow(ShareLinkContent::class.java)) {
+                    MessageDialog.show(activity, content)
+                } else {
+                    trace("MessageDialog.canShow is false")
+                }
+
+            }
+        }
+
+
+        return null
     }
 
     fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent) {

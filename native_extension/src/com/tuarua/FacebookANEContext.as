@@ -37,6 +37,9 @@ public class FacebookANEContext {
     private static const ON_LOGIN_SUCCESS:String = "FacebookEvent.OnLoginSuccess";
     private static const ON_LOGIN_CANCEL:String = "FacebookEvent.OnLoginCancel";
     private static const ON_LOGIN_ERROR:String = "FacebookEvent.OnLoginError";
+    private static const ON_SHARE_SUCCESS:String = "FacebookEvent.OnShareSuccess";
+    private static const ON_SHARE_CANCEL:String = "FacebookEvent.OnShareCancel";
+    private static const ON_SHARE_ERROR:String = "FacebookEvent.OnShareError";
 
     public function FacebookANEContext() {
     }
@@ -92,6 +95,7 @@ public class FacebookANEContext {
                 delete closures[argsAsJSON.eventId];
                 break;
             case ON_LOGIN_CANCEL:
+            case ON_SHARE_CANCEL:
                 argsAsJSON = JSON.parse(event.code);
                 closure = closures[argsAsJSON.eventId];
                 if (closure == null) return;
@@ -99,6 +103,7 @@ public class FacebookANEContext {
                 delete closures[argsAsJSON.eventId];
                 break;
             case ON_LOGIN_ERROR:
+            case ON_SHARE_ERROR:
                 argsAsJSON = JSON.parse(event.code);
                 closure = closures[argsAsJSON.eventId];
                 if (closure == null) return;
@@ -110,6 +115,13 @@ public class FacebookANEContext {
                 closure = closures[argsAsJSON.eventId];
                 if (closure == null) return;
                 closure.call(null, new LoginResult(argsAsJSON.data));
+                delete closures[argsAsJSON.eventId];
+                break;
+            case ON_SHARE_SUCCESS:
+                argsAsJSON = JSON.parse(event.code);
+                closure = closures[argsAsJSON.eventId];
+                if (closure == null) return;
+                closure.call(null, argsAsJSON.data.postId);
                 delete closures[argsAsJSON.eventId];
                 break;
         }

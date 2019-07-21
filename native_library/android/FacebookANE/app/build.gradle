@@ -28,6 +28,7 @@ dependencies {
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "com.tuarua:FreKotlin:$frekotlin_version"
     implementation "com.facebook.android:facebook-android-sdk:$facebook_version"
+    implementation "com.facebook.android:facebook-share:$facebook_version"
 }
 repositories {
     mavenCentral()
