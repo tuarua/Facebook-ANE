@@ -17,12 +17,12 @@ package com.tuarua.facebookane.data
 
 data class FacebookEvent(val eventId:String?, val data: Map<String, Any?>? = null) {
     companion object {
-        const val ON_LOGIN_SUCCESS: String = "FacebookEvent.OnLoginSuccess"
-        const val ON_LOGIN_CANCEL: String = "FacebookEvent.OnLoginCancel"
-        const val ON_LOGIN_ERROR: String = "FacebookEvent.OnLoginError"
-        const val ON_SHARE_SUCCESS: String = "FacebookEvent.OnShareSuccess"
-        const val ON_SHARE_CANCEL: String = "FacebookEvent.OnShareCancel"
-        const val ON_SHARE_ERROR: String = "FacebookEvent.OnShareError"
+        const val ON_LOGIN_SUCCESS = "FacebookEvent.OnLoginSuccess"
+        const val ON_LOGIN_CANCEL = "FacebookEvent.OnLoginCancel"
+        const val ON_LOGIN_ERROR = "FacebookEvent.OnLoginError"
+        const val ON_SHARE_SUCCESS = "FacebookEvent.OnShareSuccess"
+        const val ON_SHARE_CANCEL = "FacebookEvent.OnShareCancel"
+        const val ON_SHARE_ERROR = "FacebookEvent.OnShareError"
         const val ON_TOKEN_REFRESH = "FacebookEvent.OnTokenRefresh"
         const val ON_TOKEN_REFRESH_FAILED = "FacebookEvent.OnTokenRefreshFailed"
         const val ON_CURRENT_ACCESS_TOKEN_CHANGED = "FacebookEvent.onCurrentAccessTokenChanged"

@@ -21,7 +21,6 @@ import com.adobe.fre.FREContext
 import com.adobe.fre.FREObject
 import com.tuarua.frekotlin.*
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.util.Base64
 import com.facebook.*
 import com.facebook.login.DefaultAudience
@@ -35,7 +34,6 @@ import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import com.facebook.FacebookCallback
 import com.facebook.share.Sharer
-import com.facebook.share.model.ShareHashtag
 import com.facebook.share.model.ShareLinkContent
 import com.facebook.share.widget.MessageDialog
 import com.facebook.share.widget.ShareDialog
@@ -60,7 +58,6 @@ class KotlinController : FreKotlinMainController {
         val applicationId = String(argv[0]) ?: return null
         val onCurrentAccessTokenChangedEventId = String(argv[1])
         activity = context?.activity ?: return null
-
         FacebookSdk.setApplicationId(applicationId)
         FacebookSdk.setAutoInitEnabled(false)
         FacebookSdk.sdkInitialize(activity) {
@@ -143,6 +140,10 @@ class KotlinController : FreKotlinMainController {
         return null
     }
 
+    fun isInitialized(ctx: FREContext, argv: FREArgv): FREObject? {
+        return FacebookSdk.isInitialized().toFREObject()
+    }
+
     // LoginManager
 
     fun login(ctx: FREContext, argv: FREArgv): FREObject? {
@@ -221,10 +222,6 @@ class KotlinController : FreKotlinMainController {
             3 -> LoginManager.getInstance().defaultAudience = DefaultAudience.EVERYONE
         }
         return null
-    }
-
-    fun isInitialized(ctx: FREContext, argv: FREArgv): FREObject? {
-        return FacebookSdk.isInitialized().toFREObject()
     }
 
     // AccessToken
