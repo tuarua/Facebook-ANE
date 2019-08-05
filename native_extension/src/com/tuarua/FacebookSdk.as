@@ -18,20 +18,21 @@ import com.tuarua.facebook.LoginManager;
 import com.tuarua.facebook.ShareLinkContent;
 import com.tuarua.fre.ANEError;
 
-public class FacebookANE {
+public class FacebookSdk {
     /** @private */
     private static var _loginManager:LoginManager;
-
     private static var _isAdvertiserIDCollectionEnabled:Boolean = true;
     private static var _isAutoLogAppEventsEnabled:Boolean = true;
+    private static var _inited:Boolean = false;
 
     public static function init(applicationId:String, onCurrentAccessTokenChanged:Function = null):void {
         if (FacebookANEContext.context) {
-            var theRet:* = FacebookANEContext.context.call("init", applicationId,
+            var ret:* = FacebookANEContext.context.call("init", applicationId,
                     FacebookANEContext.createEventId(onCurrentAccessTokenChanged),
                     _isAdvertiserIDCollectionEnabled,
                     _isAutoLogAppEventsEnabled);
-            if (theRet is ANEError) throw theRet as ANEError;
+            if (ret is ANEError) throw ret as ANEError;
+            _inited = true
         }
     }
 
@@ -40,17 +41,17 @@ public class FacebookANE {
      * @param value Debug features (like logging) are enabled if true, disabled if false.
      */
     public static function set isDebugEnabled(value:Boolean):void {
-        var theRet:* = FacebookANEContext.context.call("setIsDebugEnabled", value);
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = FacebookANEContext.context.call("setIsDebugEnabled", value);
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /**
      * Indicates if we are in debug mode.
      */
     public static function get isDebugEnabled():Boolean {
-        var theRet:* = FacebookANEContext.context.call("isDebugEnabled");
-        if (theRet is ANEError) throw theRet as ANEError;
-        return theRet as Boolean;
+        var ret:* = FacebookANEContext.context.call("isDebugEnabled");
+        if (ret is ANEError) throw ret as ANEError;
+        return ret as Boolean;
     }
 
     /**
@@ -62,8 +63,8 @@ public class FacebookANE {
      * @param behavior The LoggingBehavior to enable
      */
     public static function addLoggingBehavior(behavior:int):void {
-        var theRet:* = FacebookANEContext.context.call("addLoggingBehavior", behavior);
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = FacebookANEContext.context.call("addLoggingBehavior", behavior);
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /**
@@ -75,8 +76,8 @@ public class FacebookANE {
      * @param behavior The LoggingBehavior to disable
      */
     public static function removeLoggingBehavior(behavior:int):void {
-        var theRet:* = FacebookANEContext.context.call("removeLoggingBehavior", behavior);
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = FacebookANEContext.context.call("removeLoggingBehavior", behavior);
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /**
@@ -86,8 +87,8 @@ public class FacebookANE {
      * Disables all extended logging behaviors.
      */
     public static function clearLoggingBehaviors():void {
-        var theRet:* = FacebookANEContext.context.call("clearLoggingBehaviors");
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = FacebookANEContext.context.call("clearLoggingBehaviors");
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /**
@@ -100,9 +101,9 @@ public class FacebookANE {
      * @return whether behavior is enabled
      */
     public static function isLoggingBehaviorEnabled(behavior:int):Boolean {
-        var theRet:* = FacebookANEContext.context.call("isLoggingBehaviorEnabled", behavior);
-        if (theRet is ANEError) throw theRet as ANEError;
-        return theRet as Boolean;
+        var ret:* = FacebookANEContext.context.call("isLoggingBehaviorEnabled", behavior);
+        if (ret is ANEError) throw ret as ANEError;
+        return ret as Boolean;
     }
 
     /**
@@ -113,9 +114,9 @@ public class FacebookANE {
      *
      */
     public static function get limitEventAndDataUsage():Boolean {
-        var theRet:* = FacebookANEContext.context.call("getLimitEventAndDataUsage");
-        if (theRet is ANEError) throw theRet as ANEError;
-        return theRet as Boolean;
+        var ret:* = FacebookANEContext.context.call("getLimitEventAndDataUsage");
+        if (ret is ANEError) throw ret as ANEError;
+        return ret as Boolean;
     }
 
     /**
@@ -127,23 +128,23 @@ public class FacebookANE {
      *
      */
     public static function set limitEventAndDataUsage(value:Boolean):void {
-        var theRet:* = FacebookANEContext.context.call("setLimitEventAndDataUsage", value);
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = FacebookANEContext.context.call("setLimitEventAndDataUsage", value);
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     public static function get hashKey():String {
-        var theRet:* = FacebookANEContext.context.call("getHashKey");
-        if (theRet is ANEError) throw theRet as ANEError;
-        return theRet as String;
+        var ret:* = FacebookANEContext.context.call("getHashKey");
+        if (ret is ANEError) throw ret as ANEError;
+        return ret as String;
     }
 
     /**
      * Indicates whether the Facebook SDK has been initialized.
      */
     public static function get isInitialized():Boolean {
-        var theRet:* = FacebookANEContext.context.call("isInitialized");
-        if (theRet is ANEError) throw theRet as ANEError;
-        return theRet as Boolean;
+        var ret:* = FacebookANEContext.context.call("isInitialized");
+        if (ret is ANEError) throw ret as ANEError;
+        return ret as Boolean;
     }
 
     /**
@@ -160,11 +161,24 @@ public class FacebookANE {
     /** Controls the fb_codeless_debug logging event If not explicitly set, the default is true */
     public static function set isAdvertiserIDCollectionEnabled(value:Boolean):void {
         _isAdvertiserIDCollectionEnabled = value;
+        if (!_inited) return;
+        var ret:* = FacebookANEContext.context.call("setIsAdvertiserIDCollectionEnabled", value);
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /** Controls the auto logging of basic app events, such as activateApp and deactivateApp. If not explicitly set, the default is true */
     public static function set isAutoLogAppEventsEnabled(value:Boolean):void {
         _isAutoLogAppEventsEnabled = value;
+        if (!_inited) return;
+        var ret:* = FacebookANEContext.context.call("setIsAutoLogAppEventsEnabled", value);
+        if (ret is ANEError) throw ret as ANEError;
+    }
+
+    /** Retrieve the current SDK version. */
+    public static function get sdkVersion():String {
+        var ret:* = FacebookANEContext.context.call("getSdkVersion");
+        if (ret is ANEError) throw ret as ANEError;
+        return ret as String;
     }
 
     /** Disposes the ANE */

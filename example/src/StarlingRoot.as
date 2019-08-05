@@ -1,6 +1,6 @@
 package {
 
-import com.tuarua.FacebookANE;
+import com.tuarua.FacebookSdk;
 import com.tuarua.facebook.AccessToken;
 import com.tuarua.facebook.DefaultAudience;
 import com.tuarua.facebook.FacebookError;
@@ -43,11 +43,12 @@ public class StarlingRoot extends Sprite {
     }
 
     public function start():void {
-        FacebookANE.init("2861959030739282", onCurrentAccessTokenChanged);
-        FacebookANE.isDebugEnabled = true;
-        trace("FacebookANE.isInitialized:", FacebookANE.isInitialized);
-        if (!FacebookANE.isInitialized) return;
-        trace("hashKey:", FacebookANE.hashKey);
+        trace("FacebookSdk.sdkVersion", FacebookSdk.sdkVersion);
+        FacebookSdk.init("2861959030739282", onCurrentAccessTokenChanged);
+        FacebookSdk.isDebugEnabled = true;
+        trace("FacebookANE.isInitialized:", FacebookSdk.isInitialized);
+        if (!FacebookSdk.isInitialized) return;
+        trace("hashKey:", FacebookSdk.hashKey);
         initMenu();
     }
 
@@ -147,34 +148,33 @@ public class StarlingRoot extends Sprite {
             trace("token:", accessToken.token);
             trace("userId:", accessToken.userId);
             trace("applicationId:", accessToken.applicationId);
-            // TODO
             switch (accessToken.source) {
                 case 0:
-                    trace("source:", "NONE");
+                    trace("source:", "none");
                     break;
                 case 1:
-                    trace("source:", "FACEBOOK_APPLICATION_WEB");
+                    trace("source:", "facebookApplicationWeb");
                     break;
                 case 2:
-                    trace("source:", "FACEBOOK_APPLICATION_NATIVE");
+                    trace("source:", "facebookApplicationNative");
                     break;
                 case 3:
-                    trace("source:", "FACEBOOK_APPLICATION_SERVICE");
+                    trace("source:", "facebookApplicationService");
                     break;
                 case 4:
-                    trace("source:", "WEB_VIEW");
+                    trace("source:", "webView");
                     break;
                 case 5:
-                    trace("source:", "CHROME_CUSTOM_TAB");
+                    trace("source:", "chromeCustomTab");
                     break;
                 case 6:
-                    trace("source:", "TEST_USER");
+                    trace("source:", "testUser");
                     break;
                 case 7:
-                    trace("source:", "CLIENT_TOKEN");
+                    trace("source:", "clientToken");
                     break;
                 case 8:
-                    trace("source:", "DEVICE_AUTH");
+                    trace("source:", "deviceAuth");
                     break;
                 default:
                     break;
@@ -192,9 +192,9 @@ public class StarlingRoot extends Sprite {
     private function onLoginClick(event:TouchEvent):void {
         var touch:Touch = event.getTouch(btnLogin);
         if (touch != null && touch.phase == TouchPhase.ENDED) {
-            loginManager = FacebookANE.loginManager;
+            loginManager = FacebookSdk.loginManager;
             var permissions:Vector.<String> = new <String>[Permission.publicProfile, Permission.email];
-            loginManager.loginBehavior = LoginBehavior.NATIVE_WITH_FALLBACK;
+            loginManager.loginBehavior = LoginBehavior.nativeWithFallback;
             loginManager.login(permissions, onLoginSuccess, onLoginCancel, onLoginError);
         }
     }
@@ -262,7 +262,7 @@ public class StarlingRoot extends Sprite {
     }
 
     private function onExiting(event:Event):void {
-        FacebookANE.dispose();
+        FacebookSdk.dispose();
     }
 
 }

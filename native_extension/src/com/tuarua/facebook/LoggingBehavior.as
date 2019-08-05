@@ -15,31 +15,17 @@
  */
 package com.tuarua.facebook {
 public final class LoggingBehavior {
-    /**
-     * Indicates that HTTP requests and a summary of responses should be logged.
-     */
+    /** Indicates that HTTP requests and a summary of responses should be logged. */
     public static const networkRequests:int = 0;
-    /**
-     * Indicates that access tokens should be logged as part of the request logging; normally they
-     * are not.
-     */
+    /** Indicates that access tokens should be logged as part of the request logging; normally they are not. */
     public static const accessTokens:int = 1;
-    /**
-     * Indicates that the entire raw HTTP response for each request should be logged.
-     */
+    /** Indicates that the entire raw HTTP response for each request should be logged. Android Only.*/
     public static const includeRaw:int = 2;
-    /**
-     * Indicates that cache operations should be logged.
-     */
+    /** Indicates that cache operations should be logged. */
     public static const cacheErrors:int = 3;
-    /**
-     * Indicates the App Events-related operations should be logged.
-     */
+    /** Indicates the App Events-related operations should be logged.*/
     public static const appEvents:int = 4;
-    /**
-     * Indicates that likely developer errors should be logged.  (This is set by default in
-     * LoggingBehavior.)
-     */
+    /** Indicates that likely developer errors should be logged.  (This is set by default in LoggingBehavior.) */
     public static const developerErrors:int = 5;
     /**
      * Log debug warnings from API response, e.g. when friends fields requested, but user_friends
@@ -52,5 +38,12 @@ public final class LoggingBehavior {
      * GRAPH_API_DEBUG levels.
      */
     public static const graphAPIDebugInfo:int = 7;
+    /** Log errors from SDK UI controls. iOS only.*/
+    public static const uiControlErrors:int = 8;
+    /** Log performance characteristics. iOS only.*/
+    public static const performanceCharacteristics:int = 9;
+    /** Log Informational occurrences. iOS only.*/
+    public static const informational:int = 10;
+
 }
 }

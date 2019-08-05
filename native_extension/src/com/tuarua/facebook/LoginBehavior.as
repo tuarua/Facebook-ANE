@@ -19,28 +19,28 @@ public final class LoginBehavior {
      * Specifies that login should attempt login in using the Facebook App, and if that
      * does not work fall back to web dialog auth. This is the default behavior.
      */
-    public static const NATIVE_WITH_FALLBACK:int = 0;
+    public static const nativeWithFallback:int = 0;
     /**
      * Specifies that login should only attempt to login using the Facebook App.
      * If the Facebook App cannot be used then the login fails.
      */
-    public static const NATIVE_ONLY:int = 1;
+    public static const nativeOnly:int = 1;
     /**
      * Specifies that login should only attempt to use Katana Proxy Login.
      */
-    public static const KATANA_ONLY:int = 2;
+    public static const katanaOnly:int = 2;
     /**
      * Specifies that only the web dialog auth should be used.
      */
-    public static const WEB_ONLY:int = 3;
+    public static const webOnly:int = 3;
     /**
      * Specifies that only the web view dialog auth should be used.
      */
-    public static const WEB_VIEW_ONLY:int = 4;
+    public static const webViewOnly:int = 4;
     /**
      * Specifies that only the web dialog auth (from anywhere) should be used
      */
-    public static const DIALOG_ONLY:int = 5;
+    public static const dialogOnly:int = 5;
 //    public static const DEVICE_AUTH:int = 6;
 
 }

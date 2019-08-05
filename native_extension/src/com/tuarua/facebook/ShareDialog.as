@@ -18,25 +18,39 @@ package com.tuarua.facebook {
 import com.tuarua.FacebookANEContext;
 import com.tuarua.fre.ANEError;
 
+/** A dialog for sharing content on Facebook. */
 public class ShareDialog {
     private var _id:String;
     private var _content:SharingContent;
-
-    public function ShareDialog(content:SharingContent, onSuccess:Function, onCancel:Function, onError:Function) {
+    /**
+     * @param onSuccess
+     * @param onCancel
+     * @param onError
+     * @param mode The mode with which to display the dialog.
+     * @param content The content to be shared. */
+    public function ShareDialog(content:SharingContent, onSuccess:Function, onCancel:Function, onError:Function,
+                                mode:uint = ShareDialogMode.automatic) {
         _content = content;
         var theRet:* = FacebookANEContext.context.call("shareDialog_create", _content,
                 FacebookANEContext.createEventId(onSuccess),
                 FacebookANEContext.createEventId(onCancel),
-                FacebookANEContext.createEventId(onError));
+                FacebookANEContext.createEventId(onError), mode);
         if (theRet is ANEError) throw theRet as ANEError;
         _id = theRet as String;
     }
 
+    /** Shows the dialog. */
     public function show():void {
         var theRet:* = FacebookANEContext.context.call("shareDialog_show", _id, _content);
         if (theRet is ANEError) throw theRet as ANEError;
     }
 
+    /** A Boolean value that indicates whether the receiver can initiate a share.
+     *
+     * May return false if the appropriate Facebook app is not installed and is required or an access token is
+     * required but not available. This method does not validate the content on the receiver, so this can be
+     * checked before building up the content.
+     * */
     public function get canShow():Boolean {
         var theRet:* = FacebookANEContext.context.call("shareDialog_canShow", _id);
         if (theRet is ANEError) throw theRet as ANEError;

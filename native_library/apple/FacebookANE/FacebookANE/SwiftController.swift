@@ -126,23 +126,16 @@ public class SwiftController: NSObject, SharingDelegate {
             return LoggingBehavior.graphAPIDebugWarning
         case 7:
             return LoggingBehavior.graphAPIDebugInfo
+        case 8:
+            return LoggingBehavior.uiControlErrors
+        case 9:
+            return LoggingBehavior.performanceCharacteristics
+        case 10:
+            return LoggingBehavior.informational
         default:
             return LoggingBehavior.networkRequests
         }
     }
-    
-    /*
-     TODO what is raw equiv - add iOS specific
-        0 -> LoggingBehavior.REQUESTS
-        1 -> LoggingBehavior.INCLUDE_ACCESS_TOKENS
-     2 -> LoggingBehavior.INCLUDE_RAW_RESPONSES
-        3 -> LoggingBehavior.CACHE
-        4 -> LoggingBehavior.APP_EVENTS
-        5 -> LoggingBehavior.DEVELOPER_ERRORS
-        6 -> LoggingBehavior.GRAPH_API_DEBUG_WARNING
-        7 -> LoggingBehavior.GRAPH_API_DEBUG_INFO
-     else -> LoggingBehavior.REQUESTS
- */
     
     func getLimitEventAndDataUsage(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         return Settings.shouldLimitEventAndDataUsage.toFREObject()
@@ -160,6 +153,20 @@ public class SwiftController: NSObject, SharingDelegate {
     
     func isInitialized(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         return true.toFREObject()
+    }
+    
+    func setIsAdvertiserIDCollectionEnabled(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        Settings.isAdvertiserIDCollectionEnabled = Bool(argv[0]) == true
+        return nil
+    }
+    
+    func setIsAutoLogAppEventsEnabled(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        Settings.isAutoLogAppEventsEnabled = Bool(argv[0]) == true
+        return nil
+    }
+    
+    func getSdkVersion(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        return Settings.sdkVersion.toFREObject()
     }
     
     // MARK: - LoginManager
@@ -321,7 +328,8 @@ public class SwiftController: NSObject, SharingDelegate {
             let content = createSharingContent(argv[0]),
             let onShareSuccessEventId = String(argv[1]),
             let onShareCancelEventId = String(argv[2]),
-            let onShareErrorEventId = String(argv[3])
+            let onShareErrorEventId = String(argv[3]),
+            let mode = UInt(argv[4])
             else {
                 return FreArgError(message: "shareDialog_create").getError(#file, #line, #column)
         }
@@ -333,7 +341,7 @@ public class SwiftController: NSObject, SharingDelegate {
 
         shareDialogs[id] = ShareDialog(fromViewController: UIApplication.shared.keyWindow?.rootViewController,
                                  content: content, delegate: self)
-        shareDialogs[id]?.mode = .automatic // TODO set this for iOS
+        shareDialogs[id]?.mode = ShareDialog.Mode(rawValue: mode) ?? .automatic
         return id.toFREObject()
     }
     

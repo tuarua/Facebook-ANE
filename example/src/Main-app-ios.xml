@@ -58,6 +58,10 @@
               <string>fbauth2</string>
               <string>fbshareextension</string>
             </array>
+            <key>FacebookAutoLogAppEventsEnabled</key>
+            <true/>
+            <key>FacebookAdvertiserIDCollectionEnabled</key>
+            <true/>
             ]]>
         </InfoAdditions>
         <requestedDisplayResolution>high</requestedDisplayResolution>

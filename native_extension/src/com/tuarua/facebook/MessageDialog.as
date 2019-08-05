@@ -17,11 +17,15 @@
 package com.tuarua.facebook {
 import com.tuarua.FacebookANEContext;
 import com.tuarua.fre.ANEError;
-
+/** A dialog for sharing content through Messenger. */
 public class MessageDialog {
     private var _id:String;
     private var _content:SharingContent;
-
+    /**
+     * @param onSuccess
+     * @param onCancel
+     * @param onError
+     * @param content The content to be shared. */
     public function MessageDialog(content:SharingContent, onSuccess:Function, onCancel:Function, onError:Function) {
         _content = content;
         var theRet:* = FacebookANEContext.context.call("messageDialog_create", content,
@@ -32,11 +36,18 @@ public class MessageDialog {
         _id = theRet as String;
     }
 
+    /** Shows the dialog. */
     public function show():void {
         var theRet:* = FacebookANEContext.context.call("messageDialog_show", _id, _content);
         if (theRet is ANEError) throw theRet as ANEError;
     }
 
+    /** A Boolean value that indicates whether the receiver can initiate a share.
+     *
+     * May return false if the appropriate Facebook app is not installed and is required or an access token is
+     * required but not available. This method does not validate the content on the receiver, so this can be
+     * checked before building up the content.
+     * */
     public function get canShow():Boolean {
         var theRet:* = FacebookANEContext.context.call("messageDialog_canShow", _id);
         if (theRet is ANEError) throw theRet as ANEError;

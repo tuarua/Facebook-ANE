@@ -63,10 +63,10 @@ CONTEXT_INIT(TRFBS) {
         ,MAP_FUNCTION(TRFBS, shareAPI_create)
         ,MAP_FUNCTION(TRFBS, shareAPI_share)
         ,MAP_FUNCTION(TRFBS, shareAPI_canShare)
+        ,MAP_FUNCTION(TRFBS, setIsAdvertiserIDCollectionEnabled)
+        ,MAP_FUNCTION(TRFBS, setIsAutoLogAppEventsEnabled)
+        ,MAP_FUNCTION(TRFBS, getSdkVersion)
     };
-    
-    /**************************************************************************/
-    /**************************************************************************/
     
     SET_FUNCTIONS
     

@@ -76,11 +76,9 @@ class KotlinController : FreKotlinMainController {
         FacebookSdk.setApplicationId(applicationId)
         FacebookSdk.setAutoInitEnabled(false)
         FacebookSdk.setAdvertiserIDCollectionEnabled(isAdvertiserIDCollectionEnabled)
-        // TODO
-        // FacebookSdk.setAutoLogAppEventsEnabled(isAutoLogAppEventsEnabled)
-        FacebookSdk.sdkInitialize(activity) {
-            info("FacebookSdk Initialized")
-        }
+        FacebookSdk.sdkInitialize(activity) { }
+
+        FacebookSdk.setAutoLogAppEventsEnabled(isAutoLogAppEventsEnabled)
 
         callbackManager = CallbackManager.Factory.create()
         if (onCurrentAccessTokenChangedEventId != null) {
@@ -95,6 +93,10 @@ class KotlinController : FreKotlinMainController {
         }
 
         return true.toFREObject()
+    }
+
+    fun getSdkVersion(ctx: FREContext, argv: FREArgv): FREObject? {
+        return FacebookSdk.getSdkVersion().toFREObject()
     }
 
     fun setIsDebugEnabled(ctx: FREContext, argv: FREArgv): FREObject? {
@@ -162,6 +164,19 @@ class KotlinController : FreKotlinMainController {
 
     fun isInitialized(ctx: FREContext, argv: FREArgv): FREObject? {
         return FacebookSdk.isInitialized().toFREObject()
+    }
+
+    fun setIsAdvertiserIDCollectionEnabled(ctx: FREContext, argv: FREArgv): FREObject? {
+        argv.takeIf { argv.size > 0 }
+                ?: return FreArgException("setIsAdvertiserIDCollectionEnabled")
+        if (FacebookSdk.isInitialized()) FacebookSdk.setAdvertiserIDCollectionEnabled(Boolean(argv[0]) == true)
+        return null
+    }
+
+    fun setIsAutoLogAppEventsEnabled(ctx: FREContext, argv: FREArgv): FREObject? {
+        argv.takeIf { argv.size > 0 } ?: return FreArgException("setIsAutoLogAppEventsEnabled")
+        if (FacebookSdk.isInitialized()) FacebookSdk.setAutoLogAppEventsEnabled(Boolean(argv[0]) == true)
+        return null
     }
 
     // LoginManager

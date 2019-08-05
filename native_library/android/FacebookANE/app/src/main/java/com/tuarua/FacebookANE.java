@@ -54,6 +54,9 @@ public class FacebookANE implements FREExtension {
             ,"shareAPI_create"
             ,"shareAPI_share"
             ,"shareAPI_canShare"
+            ,"setIsAdvertiserIDCollectionEnabled"
+            ,"setIsAutoLogAppEventsEnabled"
+            ,"getSdkVersion"
     };
     public static FacebookANEContext extensionContext;
 

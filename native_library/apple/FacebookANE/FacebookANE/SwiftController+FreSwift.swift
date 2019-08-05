@@ -16,6 +16,7 @@ import Foundation
 import FreSwift
 
 import FacebookCore
+import FBSDKCoreKit
 
 extension SwiftController: FreSwiftMainController {
     @objc public func getFunctions(prefix: String) -> [String] {
@@ -50,7 +51,10 @@ extension SwiftController: FreSwiftMainController {
         functionsToSet["\(prefix)shareAPI_create"] = shareAPI_create
         functionsToSet["\(prefix)shareAPI_share"] = shareAPI_share
         functionsToSet["\(prefix)shareAPI_canShare"] = shareAPI_canShare
-        
+        functionsToSet["\(prefix)setIsAdvertiserIDCollectionEnabled"] = setIsAdvertiserIDCollectionEnabled
+        functionsToSet["\(prefix)setIsAutoLogAppEventsEnabled"] = setIsAutoLogAppEventsEnabled
+        functionsToSet["\(prefix)getSdkVersion"] = getSdkVersion
+
         var arr: [String] = []
         for key in functionsToSet.keys {
             arr.append(key)
@@ -64,7 +68,7 @@ extension SwiftController: FreSwiftMainController {
     }
     
     @objc func applicationDidBecomeActive(_ notification: Notification) {
-        // self.appBecomeActiveNotification = notification
+        AppEvents.activateApp()
     }
     
     @objc public func dispose() {
