@@ -25,6 +25,10 @@ public class FacebookSdk {
     private static var _isAutoLogAppEventsEnabled:Boolean = true;
     private static var _inited:Boolean = false;
 
+    /**
+     * @param applicationId 
+     * @param onCurrentAccessTokenChanged doesn't fire on iOS 
+     */
     public static function init(applicationId:String, onCurrentAccessTokenChanged:Function = null):void {
         if (FacebookANEContext.context) {
             var ret:* = FacebookANEContext.context.call("init", applicationId,

@@ -8,9 +8,9 @@ echo build asdocs
 call D:\dev\sdks\AIR\AIRSDK_28\bin\asdoc ^
 -doc-sources %pathtome%..\src ^
 -source-path %pathtome%..\src ^
--window-title "Tua Rua Battery-ANE by Tua Rua Ltd." ^
--main-title "Battery-ANE Documentation" ^
--footer "Copyright Tua Rua Ltd. 2018" ^
+-window-title "Tua Rua Facebook-ANE by Tua Rua Ltd." ^
+-main-title "Facebook-ANE Documentation" ^
+-footer "Copyright Tua Rua Ltd. 2019" ^
 -output %pathtome%..\docs\asdocs ^
 -lenient ^
 -library-path+=D:\dev\sdks\AIR\AIRSDK_28\frameworks\libs\air\airglobal.swc
@@ -19,9 +19,9 @@ call D:\dev\sdks\AIR\AIRSDK_28\bin\asdoc ^
 call D:\dev\sdks\AIR\AIRSDK_28\bin\asdoc ^
 -doc-sources %pathtome%..\src ^
 -source-path %pathtome%..\src ^
--window-title "Battery-ANE by Tua Rua Ltd." ^
--main-title "Battery-ANE Documentation" ^
--footer "Copyright Tua Rua Ltd. 2018" ^
+-window-title "Facebook-ANE by Tua Rua Ltd." ^
+-main-title "Facebook-ANE Documentation" ^
+-footer "Copyright Tua Rua Ltd. 2019" ^
 -output %pathtome%..\docs\tmp ^
 -lenient -keep-xml=true -skip-xsl=true ^
 -library-path+=D:\dev\sdks\AIR\AIRSDK_28\frameworks\libs\air\airglobal.swc
