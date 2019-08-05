@@ -54,7 +54,15 @@ CONTEXT_INIT(TRFBS) {
         ,MAP_FUNCTION(TRFBS, refreshCurrentAccessTokenAsync)
         ,MAP_FUNCTION(TRFBS, isCurrentAccessTokenActive)
         ,MAP_FUNCTION(TRFBS, isDataAccessActive)
-        ,MAP_FUNCTION(TRFBS, share)
+        ,MAP_FUNCTION(TRFBS, shareDialog_create)
+        ,MAP_FUNCTION(TRFBS, shareDialog_show)
+        ,MAP_FUNCTION(TRFBS, shareDialog_canShow)
+        ,MAP_FUNCTION(TRFBS, messageDialog_create)
+        ,MAP_FUNCTION(TRFBS, messageDialog_show)
+        ,MAP_FUNCTION(TRFBS, messageDialog_canShow)
+        ,MAP_FUNCTION(TRFBS, shareAPI_create)
+        ,MAP_FUNCTION(TRFBS, shareAPI_share)
+        ,MAP_FUNCTION(TRFBS, shareAPI_canShare)
     };
     
     /**************************************************************************/

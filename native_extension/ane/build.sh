@@ -5,7 +5,7 @@ echo "Setting path to current directory to:"
 pathtome=$0
 pathtome="${pathtome%/*}"
 
-PROJECTNAME=BatteryANE
+PROJECTNAME=FacebookANE
 fwSuffix="_FW"
 libSuffix="_LIB"
 
@@ -68,10 +68,21 @@ echo "Copying native libraries into place."
 cp -R -L "$pathtome/../../native_library/apple/$PROJECTNAME/Build/Products/Release-iphonesimulator/lib$PROJECTNAME$libSuffix.a" "$pathtome/platforms/ios/simulator/lib$PROJECTNAME.a"
 cp -R -L "$pathtome/../../native_library/apple/$PROJECTNAME/Build/Products/Release-iphoneos/lib$PROJECTNAME$libSuffix.a" "$pathtome/platforms/ios/device/lib$PROJECTNAME.a"
 
-
 cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FreSwift.framework" "$pathtome/platforms/ios/simulator/Frameworks"
-cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FreSwift.framework" "$pathtome/platforms/ios/device/Frameworks"
+cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FacebookCore.framework" "$pathtome/platforms/ios/simulator/Frameworks"
+cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FacebookLogin.framework" "$pathtome/platforms/ios/simulator/Frameworks"
+cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FacebookShare.framework" "$pathtome/platforms/ios/simulator/Frameworks"
+cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FBSDKCoreKit.framework" "$pathtome/platforms/ios/simulator/Frameworks"
+cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FBSDKLoginKit.framework" "$pathtome/platforms/ios/simulator/Frameworks"
+cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FBSDKShareKit.framework" "$pathtome/platforms/ios/simulator/Frameworks"
 
+cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FreSwift.framework" "$pathtome/platforms/ios/device/Frameworks"
+cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FacebookCore.framework" "$pathtome/platforms/ios/device/Frameworks"
+cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FacebookLogin.framework" "$pathtome/platforms/ios/device/Frameworks"
+cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FacebookShare.framework" "$pathtome/platforms/ios/device/Frameworks"
+cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FBSDKCoreKit.framework" "$pathtome/platforms/ios/device/Frameworks"
+cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FBSDKLoginKit.framework" "$pathtome/platforms/ios/device/Frameworks"
+cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FBSDKShareKit.framework" "$pathtome/platforms/ios/device/Frameworks"
 
 cp -R -L "$pathtome/../../native_library/apple/$PROJECTNAME/Build/Products/Release-iphonesimulator/$PROJECTNAME$fwSuffix.framework" "$pathtome/platforms/ios/simulator/Frameworks"
 cp -R -L "$pathtome/../../native_library/apple/$PROJECTNAME/Build/Products/Release-iphoneos/$PROJECTNAME$fwSuffix.framework" "$pathtome/platforms/ios/device/Frameworks"
@@ -83,9 +94,9 @@ echo "Copying Swift dylibs into place for device."
 #Device
 if [ -e "$pathtome/platforms/ios/device/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks" ]
 then
-for dylib in "$pathtome/platforms/ios/device/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks/*"
+for dylib in "$pathtome"/platforms/ios/device/Frameworks/"$PROJECTNAME""$fwSuffix".framework/Frameworks/*
 do
-mv -f $dylib "$pathtome/../../example/ios_dependencies/device/Frameworks"
+mv -f "$dylib" "$pathtome/../../example/ios_dependencies/device/Frameworks"
 done
 rm -r "$pathtome/platforms/ios/device/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks"
 fi
@@ -94,9 +105,9 @@ echo "Copying Swift dylibs into place for simulator."
 #Simulator
 if [ -e "$pathtome/platforms/ios/simulator/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks" ]
 then
-for dylib in "$pathtome/platforms/ios/simulator/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks/*"
+for dylib in "$pathtome"/platforms/ios/simulator/Frameworks/"$PROJECTNAME""$fwSuffix".framework/Frameworks/*
 do
-mv -f $dylib "$pathtome/../../example/ios_dependencies/simulator/Frameworks"
+mv -f "$dylib" "$pathtome/../../example/ios_dependencies/simulator/Frameworks"
 done
 if [ -d "$pathtome/platforms/ios/device/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks" ]; then
 rm -r "$pathtome/platforms/ios/device/Frameworks/$PROJECTNAME$fwSuffix.framework/Frameworks"
@@ -119,7 +130,6 @@ fi
 cp -R -L "$pathtome/platforms/ios/simulator/Frameworks/$PROJECTNAME$fwSuffix.framework" "$pathtome/../../example/ios_dependencies/simulator/Frameworks"
 cp -R -L "$pathtome/platforms/ios/device/Frameworks/$PROJECTNAME$fwSuffix.framework" "$pathtome/../../example/ios_dependencies/device/Frameworks"
 
-
 echo "Copying Android aars into place"
 cp "$pathtome/../../native_library/android/$PROJECTNAME/app/build/outputs/aar/app-release.aar" "$pathtome/platforms/android/app-release.aar"
 echo "getting Android jars"
@@ -131,7 +141,7 @@ mv "$pathtome/platforms/android/res" "$pathtome/platforms/android/com.tuarua.$PR
 #Run the build command.
 echo "Building ANE."
 "$AIR_SDK"/bin/adt -package \
--target ane "$pathtome/$PROJECTNAME.ane" "$pathtome/extension_mobile.xml" \
+-target ane "$pathtome/$PROJECTNAME.ane" "$pathtome/extension.xml" \
 -swc "$pathtome/$PROJECTNAME.swc" \
 -platform Android-ARM \
 -C "$pathtome/platforms/android" "library.swf" "classes.jar" \
@@ -141,9 +151,9 @@ com.tuarua.$PROJECTNAME-res/. \
 -C "$pathtome/platforms/android" "library.swf" "classes.jar" \
 com.tuarua.$PROJECTNAME-res/. \
 -platformoptions "$pathtome/platforms/android/platform.xml" \
--platform iPhone-x86  -C "$pathtome/platforms/ios/simulator" "library.swf" "Frameworks" "lib$PROJECTNAME.a" \
--platformoptions "$pathtome/platforms/ios/platform.xml" \
 -platform iPhone-ARM  -C "$pathtome/platforms/ios/device" "library.swf" "Frameworks" "lib$PROJECTNAME.a" \
+-platformoptions "$pathtome/platforms/ios/platform.xml" \
+-platform iPhone-x86  -C "$pathtome/platforms/ios/device" "library.swf" "Frameworks" "lib$PROJECTNAME.a" \
 -platformoptions "$pathtome/platforms/ios/platform.xml" \
 -platform default -C "$pathtome/platforms/default" "library.swf" \
 

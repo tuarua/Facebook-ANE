@@ -11,6 +11,12 @@
     <packagedDependencies>
         <packagedDependency>Frameworks/FreSwift.framework</packagedDependency>
         <packagedDependency>Frameworks/FacebookANE_FW.framework</packagedDependency>
+        <packagedDependency>Frameworks/FacebookCore.framework</packagedDependency>
+        <packagedDependency>Frameworks/FacebookLogin.framework</packagedDependency>
+        <packagedDependency>Frameworks/FacebookShare.framework</packagedDependency>
+        <packagedDependency>Frameworks/FBSDKCoreKit.framework</packagedDependency>
+        <packagedDependency>Frameworks/FBSDKLoginKit.framework</packagedDependency>
+        <packagedDependency>Frameworks/FBSDKShareKit.framework</packagedDependency>
     </packagedDependencies>
     
 </platform>

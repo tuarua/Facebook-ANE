@@ -2,11 +2,19 @@ package {
 
 import com.tuarua.FacebookANE;
 import com.tuarua.facebook.AccessToken;
+import com.tuarua.facebook.DefaultAudience;
 import com.tuarua.facebook.FacebookError;
+import com.tuarua.facebook.LoggingBehavior;
 import com.tuarua.facebook.LoginBehavior;
 import com.tuarua.facebook.LoginManager;
 import com.tuarua.facebook.LoginResult;
+import com.tuarua.facebook.Permission;
+import com.tuarua.facebook.ShareDialog;
 import com.tuarua.facebook.ShareLinkContent;
+import com.tuarua.facebook.SharePhoto;
+import com.tuarua.facebook.SharePhotoContent;
+import com.tuarua.facebook.ShareVideo;
+import com.tuarua.facebook.ShareVideoContent;
 
 import flash.desktop.NativeApplication;
 import flash.events.Event;
@@ -25,7 +33,7 @@ public class StarlingRoot extends Sprite {
     private var btnGetAccessToken:SimpleButton = new SimpleButton("Get Access Token");
     private var btnRefreshToken:SimpleButton = new SimpleButton("Refresh Token");
     private var btnLogout:SimpleButton = new SimpleButton("Logout");
-    private var btnShare:SimpleButton = new SimpleButton("Share");
+    private var btnShare:SimpleButton = new SimpleButton("Share Link Content");
     private var loginManager:LoginManager;
     private var statusLabel:TextField;
 
@@ -46,7 +54,7 @@ public class StarlingRoot extends Sprite {
     private function initMenu():void {
         btnShare.x = (stage.stageWidth - 200) * 0.5;
         btnShare.y = 25;
-        btnShare.addEventListener(TouchEvent.TOUCH, onShareClick);
+        btnShare.addEventListener(TouchEvent.TOUCH, onShareLinkClick);
 
         btnLogin.x = (stage.stageWidth - 200) * 0.5;
         btnLogin.y = btnShare.y + 75;
@@ -73,7 +81,8 @@ public class StarlingRoot extends Sprite {
         addChild(btnGetAccessToken);
         addChild(btnLogout);
 
-        statusLabel = new TextField(stage.stageWidth, 400, "");
+        statusLabel = new TextField(stage.stageWidth - 20, 400, "");
+        statusLabel.x = 10;
         statusLabel.format.setTo(Fonts.NAME, 13, 0x222222, Align.LEFT, Align.TOP);
         statusLabel.touchable = false;
         statusLabel.y = btnLogout.y + 75;
@@ -81,12 +90,52 @@ public class StarlingRoot extends Sprite {
 
     }
 
-    private function onShareClick(event:TouchEvent):void {
+    private function onShareLinkClick(event:TouchEvent):void {
         var touch:Touch = event.getTouch(btnShare);
         if (touch != null && touch.phase == TouchPhase.ENDED) {
+
             var shareLinkContent:ShareLinkContent = new ShareLinkContent();
             shareLinkContent.contentUrl = "https://www.google.com";
-            FacebookANE.share(shareLinkContent, onShareSuccess, onShareCancel, onShareError);
+
+            var shareDialog:ShareDialog = new ShareDialog(shareLinkContent, onShareSuccess, onShareCancel, onShareError);
+            trace("shareDialog.canShow", shareDialog.canShow);
+            shareDialog.show();
+        }
+    }
+
+    private function onSharePhotoClick(event:TouchEvent):void {
+        var touch:Touch = event.getTouch(btnShare);
+        if (touch != null && touch.phase == TouchPhase.ENDED) {
+
+            var sharePhotoContent:SharePhotoContent = new SharePhotoContent();
+            var sharePhoto:SharePhoto = new SharePhoto();
+            sharePhoto.imageUrl = "https://www.wired.com/wp-content/uploads/2014/07/Apple_Swift_Logo.png";
+            sharePhotoContent.photos.push(sharePhoto);
+
+            var shareDialog:ShareDialog = new ShareDialog(sharePhotoContent, onShareSuccess, onShareCancel, onShareError);
+            if (shareDialog.canShow) {
+                shareDialog.show();
+            } else {
+                statusLabel.text = "Can't share Photo";
+            }
+        }
+    }
+
+    private function onShareVideoClick(event:TouchEvent):void {
+        var touch:Touch = event.getTouch(btnShare);
+        if (touch != null && touch.phase == TouchPhase.ENDED) {
+
+            var shareVideoContent:ShareVideoContent = new ShareVideoContent();
+            var sharePhoto:ShareVideo = new ShareVideo();
+            sharePhoto.videoUrl = "https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4";
+            shareVideoContent.video = sharePhoto;
+
+            var shareDialog:ShareDialog = new ShareDialog(shareVideoContent, onShareSuccess, onShareCancel, onShareError);
+            if (shareDialog.canShow) {
+                shareDialog.show();
+            } else {
+                statusLabel.text = "Can't share Video";
+            }
         }
     }
 
@@ -98,6 +147,7 @@ public class StarlingRoot extends Sprite {
             trace("token:", accessToken.token);
             trace("userId:", accessToken.userId);
             trace("applicationId:", accessToken.applicationId);
+            // TODO
             switch (accessToken.source) {
                 case 0:
                     trace("source:", "NONE");
@@ -143,7 +193,7 @@ public class StarlingRoot extends Sprite {
         var touch:Touch = event.getTouch(btnLogin);
         if (touch != null && touch.phase == TouchPhase.ENDED) {
             loginManager = FacebookANE.loginManager;
-            var permissions:Vector.<String> = new <String>["public_profile", "email"];
+            var permissions:Vector.<String> = new <String>[Permission.publicProfile, Permission.email];
             loginManager.loginBehavior = LoginBehavior.NATIVE_WITH_FALLBACK;
             loginManager.login(permissions, onLoginSuccess, onLoginCancel, onLoginError);
         }
@@ -177,6 +227,8 @@ public class StarlingRoot extends Sprite {
         btnGetAccessToken.visible = btnLogout.visible = btnRefreshToken.visible = true;
         statusLabel.text = "Login Success \n";
         trace(loginResult.accessToken.token);
+        trace(loginResult.accessToken.lastRefresh);
+        trace(loginResult.accessToken.expires);
     }
 
     private function onShareError(error:FacebookError):void {

@@ -45,9 +45,16 @@ public class FacebookANE implements FREExtension {
             ,"refreshCurrentAccessTokenAsync"
             ,"isCurrentAccessTokenActive"
             ,"isDataAccessActive"
-            ,"share"
+            ,"shareDialog_create"
+            ,"shareDialog_show"
+            ,"shareDialog_canShow"
+            ,"messageDialog_create"
+            ,"messageDialog_show"
+            ,"messageDialog_canShow"
+            ,"shareAPI_create"
+            ,"shareAPI_share"
+            ,"shareAPI_canShare"
     };
-
     public static FacebookANEContext extensionContext;
 
     @Override

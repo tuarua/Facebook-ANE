@@ -18,39 +18,39 @@ public final class LoggingBehavior {
     /**
      * Indicates that HTTP requests and a summary of responses should be logged.
      */
-    public static const REQUESTS:int = 0;
+    public static const networkRequests:int = 0;
     /**
      * Indicates that access tokens should be logged as part of the request logging; normally they
      * are not.
      */
-    public static const INCLUDE_ACCESS_TOKENS:int = 1;
+    public static const accessTokens:int = 1;
     /**
      * Indicates that the entire raw HTTP response for each request should be logged.
      */
-    public static const INCLUDE_RAW_RESPONSES:int = 2;
+    public static const includeRaw:int = 2;
     /**
      * Indicates that cache operations should be logged.
      */
-    public static const CACHE:int = 3;
+    public static const cacheErrors:int = 3;
     /**
      * Indicates the App Events-related operations should be logged.
      */
-    public static const APP_EVENTS:int = 4;
+    public static const appEvents:int = 4;
     /**
      * Indicates that likely developer errors should be logged.  (This is set by default in
      * LoggingBehavior.)
      */
-    public static const DEVELOPER_ERRORS:int = 5;
+    public static const developerErrors:int = 5;
     /**
      * Log debug warnings from API response, e.g. when friends fields requested, but user_friends
      * permission isn't granted.
      */
-    public static const GRAPH_API_DEBUG_WARNING:int = 6;
+    public static const graphAPIDebugWarning:int = 6;
     /**
      * Log warnings from API response, e.g. when requested feature will be deprecated in next
      * version of API. Info is the lowest level of severity, using it will result in logging all
      * GRAPH_API_DEBUG levels.
      */
-    public static const GRAPH_API_DEBUG_INFO:int = 7;
+    public static const graphAPIDebugInfo:int = 7;
 }
 }

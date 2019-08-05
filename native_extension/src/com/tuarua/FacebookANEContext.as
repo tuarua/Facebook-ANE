@@ -68,6 +68,7 @@ public class FacebookANEContext {
 
     private static function gotEvent(event:StatusEvent):void {
         var closure:Function;
+        // trace(event.code);
         switch (event.level) {
             case TRACE:
                 trace("[" + NAME + "]", event.code);

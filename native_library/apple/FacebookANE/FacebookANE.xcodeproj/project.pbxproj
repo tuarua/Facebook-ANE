@@ -7,9 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90FE428422F2077C0040A1EC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FE428322F2077C0040A1EC /* FBSDKCoreKit.framework */; };
+		9051961422F7962800D51F08 /* FreSharePhotoContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9051961322F7962800D51F08 /* FreSharePhotoContent.swift */; };
+		9051961622F7964700D51F08 /* FreShareVideoContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9051961522F7964700D51F08 /* FreShareVideoContent.swift */; };
+		9051961822F7974B00D51F08 /* FreShareVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9051961722F7974B00D51F08 /* FreShareVideo.swift */; };
+		9051961A22F798D600D51F08 /* FreSharePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9051961922F798D600D51F08 /* FreSharePhoto.swift */; };
+		9064CF4222F5F72900D64F71 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9064CF4022F5F72900D64F71 /* FBSDKShareKit.framework */; };
+		9064CF4322F5F72900D64F71 /* FacebookShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9064CF4122F5F72900D64F71 /* FacebookShare.framework */; };
+		9064CF4522F5F88C00D64F71 /* FreShareLinkContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064CF4422F5F88C00D64F71 /* FreShareLinkContent.swift */; };
+		9064CF4722F6049A00D64F71 /* SwiftController+SharingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064CF4622F6049A00D64F71 /* SwiftController+SharingDelegate.swift */; };
+		90B0A06522F4DE41004121DB /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B0A06322F4DE41004121DB /* FBSDKLoginKit.framework */; };
+		90B0A06622F4DE41004121DB /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B0A06422F4DE41004121DB /* FBSDKCoreKit.framework */; };
 		90FE428622F207B50040A1EC /* FacebookCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FE428522F207B50040A1EC /* FacebookCore.framework */; };
-		90FE428922F20F5A0040A1EC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FE428722F20F5A0040A1EC /* FBSDKLoginKit.framework */; };
 		90FE428A22F20F5A0040A1EC /* FacebookLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FE428822F20F5A0040A1EC /* FacebookLogin.framework */; };
 		90FE428E22F248320040A1EC /* FreAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FE428D22F248320040A1EC /* FreAccessToken.swift */; };
 		90FE429222F24AE70040A1EC /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FE429022F24AE70040A1EC /* SwiftyJSON.swift */; };
@@ -38,9 +46,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		90FE428322F2077C0040A1EC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		9051961322F7962800D51F08 /* FreSharePhotoContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreSharePhotoContent.swift; sourceTree = "<group>"; };
+		9051961522F7964700D51F08 /* FreShareVideoContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreShareVideoContent.swift; sourceTree = "<group>"; };
+		9051961722F7974B00D51F08 /* FreShareVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreShareVideo.swift; sourceTree = "<group>"; };
+		9051961922F798D600D51F08 /* FreSharePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreSharePhoto.swift; sourceTree = "<group>"; };
+		9064CF4022F5F72900D64F71 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = Carthage/Build/iOS/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		9064CF4122F5F72900D64F71 /* FacebookShare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookShare.framework; path = Carthage/Build/iOS/FacebookShare.framework; sourceTree = "<group>"; };
+		9064CF4422F5F88C00D64F71 /* FreShareLinkContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreShareLinkContent.swift; sourceTree = "<group>"; };
+		9064CF4622F6049A00D64F71 /* SwiftController+SharingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftController+SharingDelegate.swift"; sourceTree = "<group>"; };
+		90B0A06322F4DE41004121DB /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Carthage/Build/iOS/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		90B0A06422F4DE41004121DB /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		90FE428522F207B50040A1EC /* FacebookCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookCore.framework; path = Carthage/Build/iOS/FacebookCore.framework; sourceTree = "<group>"; };
-		90FE428722F20F5A0040A1EC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Carthage/Build/iOS/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		90FE428822F20F5A0040A1EC /* FacebookLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookLogin.framework; path = Carthage/Build/iOS/FacebookLogin.framework; sourceTree = "<group>"; };
 		90FE428D22F248320040A1EC /* FreAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreAccessToken.swift; sourceTree = "<group>"; };
 		90FE429022F24AE70040A1EC /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -73,11 +89,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9064CF4322F5F72900D64F71 /* FacebookShare.framework in Frameworks */,
+				90B0A06622F4DE41004121DB /* FBSDKCoreKit.framework in Frameworks */,
 				90FE428622F207B50040A1EC /* FacebookCore.framework in Frameworks */,
+				9064CF4222F5F72900D64F71 /* FBSDKShareKit.framework in Frameworks */,
 				CE0560401FB25CE200D06976 /* FreSwift.framework in Frameworks */,
-				90FE428922F20F5A0040A1EC /* FBSDKLoginKit.framework in Frameworks */,
+				90B0A06522F4DE41004121DB /* FBSDKLoginKit.framework in Frameworks */,
 				90FE428A22F20F5A0040A1EC /* FacebookLogin.framework in Frameworks */,
-				90FE428422F2077C0040A1EC /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +106,11 @@
 			isa = PBXGroup;
 			children = (
 				90FE428D22F248320040A1EC /* FreAccessToken.swift */,
+				9064CF4422F5F88C00D64F71 /* FreShareLinkContent.swift */,
+				9051961322F7962800D51F08 /* FreSharePhotoContent.swift */,
+				9051961522F7964700D51F08 /* FreShareVideoContent.swift */,
+				9051961722F7974B00D51F08 /* FreShareVideo.swift */,
+				9051961922F798D600D51F08 /* FreSharePhoto.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -112,10 +135,12 @@
 		CE05603D1FB25CD100D06976 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9064CF4122F5F72900D64F71 /* FacebookShare.framework */,
+				9064CF4022F5F72900D64F71 /* FBSDKShareKit.framework */,
+				90B0A06422F4DE41004121DB /* FBSDKCoreKit.framework */,
+				90B0A06322F4DE41004121DB /* FBSDKLoginKit.framework */,
 				90FE428822F20F5A0040A1EC /* FacebookLogin.framework */,
-				90FE428722F20F5A0040A1EC /* FBSDKLoginKit.framework */,
 				90FE428522F207B50040A1EC /* FacebookCore.framework */,
-				90FE428322F2077C0040A1EC /* FBSDKCoreKit.framework */,
 				CE05603E1FB25CE200D06976 /* FreSwift.framework */,
 			);
 			name = Frameworks;
@@ -151,6 +176,7 @@
 				CE0560411FB25D1B00D06976 /* SwiftController.swift */,
 				CE87F4781FB259DB005CF7DF /* FacebookANE.m */,
 				CEBD78C82057198700ABE05A /* SwiftController+FreSwift.swift */,
+				9064CF4622F6049A00D64F71 /* SwiftController+SharingDelegate.swift */,
 			);
 			path = FacebookANE;
 			sourceTree = "<group>";
@@ -290,16 +316,16 @@
 		};
 		CEDDADE01FBFB84900D6EB5F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "../../../native_extension/ane/build_mobile.sh\n";
+			shellScript = "../../../native_extension/ane/build.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -317,10 +343,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				90FE428E22F248320040A1EC /* FreAccessToken.swift in Sources */,
+				9051961822F7974B00D51F08 /* FreShareVideo.swift in Sources */,
+				9064CF4722F6049A00D64F71 /* SwiftController+SharingDelegate.swift in Sources */,
+				9051961A22F798D600D51F08 /* FreSharePhoto.swift in Sources */,
+				9051961422F7962800D51F08 /* FreSharePhotoContent.swift in Sources */,
 				CE0560431FB25D1B00D06976 /* SwiftController.swift in Sources */,
 				90FE429622F24B8B0040A1EC /* FacebookEvent.swift in Sources */,
 				CEBD78C92057198700ABE05A /* SwiftController+FreSwift.swift in Sources */,
 				90FE429222F24AE70040A1EC /* SwiftyJSON.swift in Sources */,
+				9064CF4522F5F88C00D64F71 /* FreShareLinkContent.swift in Sources */,
+				9051961622F7964700D51F08 /* FreShareVideoContent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

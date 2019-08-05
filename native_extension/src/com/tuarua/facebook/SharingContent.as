@@ -14,22 +14,28 @@
  *  limitations under the License.
  */
 package com.tuarua.facebook {
-public final class DefaultAudience {
+public class SharingContent {
     /**
-     * Represents an invalid default audience value, can be used when only reading.
+     * The URL for the content being shared.
      */
-    public static const none:int = 0;
+    public var contentUrl:String;
     /**
-     * Indicates only the user is able to see posts made by the application.
+     * The Hashtag for this content
      */
-    public static const onlyMe:int = 1;
+    public var hashtag:String;
     /**
-     * Indicates that the user's friends are able to see posts made by the application.
+     * The Id for the place to tag.
      */
-    public static const friends:int = 2;
+    public var placeId:String;
     /**
-     * Indicates that all Facebook users are able to see posts made by the application.
+     * The Id of the Facebook page this share is associated with.
      */
-    public static const everyone:int = 3;
+    public var pageId:String;
+    /**
+     * The list of Ids for taggable people to tag with this content.
+     */
+    public var peopleIds:Vector.<String> = new Vector.<String>();
+    public function SharingContent() {
+    }
 }
 }

@@ -22,10 +22,15 @@ public class FacebookANE {
     /** @private */
     private static var _loginManager:LoginManager;
 
+    private static var _isAdvertiserIDCollectionEnabled:Boolean = true;
+    private static var _isAutoLogAppEventsEnabled:Boolean = true;
+
     public static function init(applicationId:String, onCurrentAccessTokenChanged:Function = null):void {
         if (FacebookANEContext.context) {
             var theRet:* = FacebookANEContext.context.call("init", applicationId,
-                    FacebookANEContext.createEventId(onCurrentAccessTokenChanged));
+                    FacebookANEContext.createEventId(onCurrentAccessTokenChanged),
+                    _isAdvertiserIDCollectionEnabled,
+                    _isAutoLogAppEventsEnabled);
             if (theRet is ANEError) throw theRet as ANEError;
         }
     }
@@ -141,15 +146,6 @@ public class FacebookANE {
         return theRet as Boolean;
     }
 
-    public static function share(shareLinkContent:ShareLinkContent, onSuccess:Function,
-                                 onCancel:Function, onError:Function, dialogType:uint = 0):void {
-        var theRet:* = FacebookANEContext.context.call("share", shareLinkContent, dialogType,  
-                FacebookANEContext.createEventId(onSuccess),
-                FacebookANEContext.createEventId(onCancel),
-                FacebookANEContext.createEventId(onError));
-        if (theRet is ANEError) throw theRet as ANEError;
-    }
-
     /**
      * Getter for the login manager.
      * @return The login manager.
@@ -159,6 +155,16 @@ public class FacebookANE {
             _loginManager = new LoginManager();
         }
         return _loginManager;
+    }
+
+    /** Controls the fb_codeless_debug logging event If not explicitly set, the default is true */
+    public static function set isAdvertiserIDCollectionEnabled(value:Boolean):void {
+        _isAdvertiserIDCollectionEnabled = value;
+    }
+
+    /** Controls the auto logging of basic app events, such as activateApp and deactivateApp. If not explicitly set, the default is true */
+    public static function set isAutoLogAppEventsEnabled(value:Boolean):void {
+        _isAutoLogAppEventsEnabled = value;
     }
 
     /** Disposes the ANE */

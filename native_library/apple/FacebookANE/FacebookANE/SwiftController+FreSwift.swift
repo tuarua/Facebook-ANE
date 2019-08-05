@@ -41,8 +41,16 @@ extension SwiftController: FreSwiftMainController {
         functionsToSet["\(prefix)refreshCurrentAccessTokenAsync"] = refreshCurrentAccessTokenAsync
         functionsToSet["\(prefix)isCurrentAccessTokenActive"] = isCurrentAccessTokenActive
         functionsToSet["\(prefix)isDataAccessActive"] = isDataAccessActive
-        functionsToSet["\(prefix)share"] = share
-
+        functionsToSet["\(prefix)shareDialog_create"] = shareDialog_create
+        functionsToSet["\(prefix)shareDialog_show"] = shareDialog_show
+        functionsToSet["\(prefix)shareDialog_canShow"] = shareDialog_canShow
+        functionsToSet["\(prefix)messageDialog_create"] = messageDialog_create
+        functionsToSet["\(prefix)messageDialog_show"] = messageDialog_show
+        functionsToSet["\(prefix)messageDialog_canShow"] = messageDialog_canShow
+        functionsToSet["\(prefix)shareAPI_create"] = shareAPI_create
+        functionsToSet["\(prefix)shareAPI_share"] = shareAPI_share
+        functionsToSet["\(prefix)shareAPI_canShare"] = shareAPI_canShare
+        
         var arr: [String] = []
         for key in functionsToSet.keys {
             arr.append(key)
@@ -52,7 +60,11 @@ extension SwiftController: FreSwiftMainController {
     }
     
     @objc func applicationDidFinishLaunching(_ notification: Notification) {
-        // notification.userInfo
+        self.appDidFinishLaunchingNotification = notification
+    }
+    
+    @objc func applicationDidBecomeActive(_ notification: Notification) {
+        // self.appBecomeActiveNotification = notification
     }
     
     @objc public func dispose() {
@@ -68,12 +80,14 @@ extension SwiftController: FreSwiftMainController {
     }
     
     @objc public func setFREContext(ctx: FREContext) {
-        self.context = FreContextSwift.init(freContext: ctx)
+        self.context = FreContextSwift(freContext: ctx)
     }
     
     @objc public func onLoad() {
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidFinishLaunching),
                                                name: UIApplication.didFinishLaunchingNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive),
+                                               name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
 }

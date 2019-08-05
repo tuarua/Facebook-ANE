@@ -18,18 +18,19 @@ import FreSwift
 
 import FacebookCore
 import FacebookLogin
+import FBSDKLoginKit
 
 public extension AccessToken {
     public func toDictionary() -> [String: Any?] {
-        return ["applicationId": self.appId,
-                "token": self.authenticationToken,
-                "userId": self.userId,
-                "expires": self.expirationDate,
-                "lastRefresh": self.refreshDate,
-                "dataAccessExpirationTime": 0,
-                "declinedPermissions": self.declinedPermissions,
-                "permissions": self.grantedPermissions,
-                "expiredPermissions": [],
-                "source": 0]
+        return ["applicationId": appID,
+                "token": tokenString,
+                "userId": userID,
+                "expires": expirationDate.timeIntervalSince1970 * 1000.0,
+                "lastRefresh": refreshDate.timeIntervalSince1970 * 1000.0,
+                "dataAccessExpirationTime": dataAccessExpirationDate.timeIntervalSince1970 * 1000.0,
+                "declinedPermissions": declinedPermissions.compactMap { $0.name },
+                "permissions": permissions.compactMap { $0.name },
+                "expiredPermissions": expiredPermissions.compactMap { $0.name },
+                "source": 4]
     }
 }
