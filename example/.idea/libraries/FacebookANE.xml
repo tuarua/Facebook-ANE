@@ -3,7 +3,9 @@
     <CLASSES>
       <root url="jar://$DOCUMENTS$/Facebook-ANE/native_extension/ane/FacebookANE.ane!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="https://tuarua.github.io/asdocs/facebookane/index.html" />
+    </JAVADOC>
     <SOURCES />
   </library>
 </component>
