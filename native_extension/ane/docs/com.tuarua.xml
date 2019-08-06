@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><apiPackage id="com.tuarua"><apiName>com.tuarua</apiName><apiDetail/><apiClassifier id="com.tuarua:FacebookSdk"><apiName>FacebookSdk</apiName><shortdesc/><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.tuarua:FacebookSdk:addLoggingBehavior"><apiName>addLoggingBehavior</apiName><shortdesc>
+     Certain logging behaviors are available for debugging beyond those that should be
+     enabled in production.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>behavior</apiItemName><apiType value="int"/><apiDesc>The LoggingBehavior to enable
+     </apiDesc></apiParam></apiOperationDef><apiDesc>
+     Certain logging behaviors are available for debugging beyond those that should be
+     enabled in production.
+     
+     Enables a particular extended logging in the SDK.
+     
+     </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:FacebookSdk:clearLoggingBehaviors"><apiName>clearLoggingBehaviors</apiName><shortdesc>
+     Certain logging behaviors are available for debugging beyond those that should be
+     enabled in production.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+     Certain logging behaviors are available for debugging beyond those that should be
+     enabled in production.
+     
+     Disables all extended logging behaviors.
+     </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:FacebookSdk:dispose"><apiName>dispose</apiName><shortdesc> Disposes the ANE </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc> Disposes the ANE </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:FacebookSdk:init"><apiName>init</apiName><shortdesc>
+     </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>applicationId</apiItemName><apiType value="String"/><apiDesc>
+     </apiDesc></apiParam><apiParam><apiItemName>onCurrentAccessTokenChanged</apiItemName><apiType value="Function"/><apiData>null</apiData><apiDesc>doesn't fire on iOS 
+     </apiDesc></apiParam></apiOperationDef><apiDesc>
+     </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:FacebookSdk:isLoggingBehaviorEnabled"><apiName>isLoggingBehaviorEnabled</apiName><shortdesc>
+     Certain logging behaviors are available for debugging beyond those that should be
+     enabled in production.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiDesc>whether behavior is enabled
+     </apiDesc><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>behavior</apiItemName><apiType value="int"/><apiDesc>The LoggingBehavior to check
+     </apiDesc></apiParam></apiOperationDef><apiDesc>
+     Certain logging behaviors are available for debugging beyond those that should be
+     enabled in production.
+     
+     Checks if a particular extended logging behavior is enabled.
+     
+     </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.tuarua:FacebookSdk:removeLoggingBehavior"><apiName>removeLoggingBehavior</apiName><shortdesc>
+     Certain logging behaviors are available for debugging beyond those that should be
+     enabled in production.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>behavior</apiItemName><apiType value="int"/><apiDesc>The LoggingBehavior to disable
+     </apiDesc></apiParam></apiOperationDef><apiDesc>
+     Certain logging behaviors are available for debugging beyond those that should be
+     enabled in production.
+     
+     Disables a particular extended logging behavior in the SDK.
+     
+     </apiDesc></apiOperationDetail></apiOperation><apiValue id="com.tuarua:FacebookSdk:hashKey:get"><apiName>hashKey</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.tuarua:FacebookSdk:isDebugEnabled:get"><apiName>isDebugEnabled</apiName><shortdesc>
+     Indicates if we are in debug mode.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+     Indicates if we are in debug mode.
+     </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:FacebookSdk:isInitialized:get"><apiName>isInitialized</apiName><shortdesc>
+     Indicates whether the Facebook SDK has been initialized.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+     Indicates whether the Facebook SDK has been initialized.
+     </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:FacebookSdk:limitEventAndDataUsage:get"><apiName>limitEventAndDataUsage</apiName><shortdesc>
+     Returns whether data such as those generated through AppEventsLogger and sent to Facebook
+     should be restricted from being used for purposes other than analytics and conversions, such
+     as targeting ads to this user.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+     Returns whether data such as those generated through AppEventsLogger and sent to Facebook
+     should be restricted from being used for purposes other than analytics and conversions, such
+     as targeting ads to this user.  Defaults to false.  This value is stored on the device and
+     persists across app launches.
+     
+     </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:FacebookSdk:loginManager:get"><apiName>loginManager</apiName><shortdesc>
+     Getter for the login manager.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiValueClassifier>com.tuarua.facebook:LoginManager</apiValueClassifier></apiValueDef><apiDesc>
+     Getter for the login manager.
+     </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:FacebookSdk:sdkVersion:get"><apiName>sdkVersion</apiName><shortdesc> Retrieve the current SDK version.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc> Retrieve the current SDK version. </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:FacebookSdk:isAdvertiserIDCollectionEnabled:set"><apiName>isAdvertiserIDCollectionEnabled</apiName><shortdesc> Controls the fb_codeless_debug logging event If not explicitly set, the default is true </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="write"/><apiType value="Boolean"/></apiValueDef><apiDesc> Controls the fb_codeless_debug logging event If not explicitly set, the default is true </apiDesc></apiValueDetail></apiValue><apiValue id="com.tuarua:FacebookSdk:isAutoLogAppEventsEnabled:set"><apiName>isAutoLogAppEventsEnabled</apiName><shortdesc> Controls the auto logging of basic app events, such as activateApp and deactivateApp.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiStatic/><apiValueAccess value="write"/><apiType value="Boolean"/></apiValueDef><apiDesc> Controls the auto logging of basic app events, such as activateApp and deactivateApp. If not explicitly set, the default is true </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage>
