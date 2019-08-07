@@ -79,7 +79,7 @@ After the ipa is created unzip it and confirm there is a "Frameworks" folder in 
 
 -------------
 
-If you wish to use FaceID you will also need to include the following in your app manifest. Update accordingly.
+You will also need to include the following in your app manifest. Update accordingly.
 ```xml
 <InfoAdditions><![CDATA[            
 <key>MinimumOSVersion</key>
