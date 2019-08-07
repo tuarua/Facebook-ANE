@@ -34,28 +34,27 @@ public class AccessToken {
     }
 
     public static function getCurrentAccessToken():AccessToken {
-        var theRet:* = FacebookANEContext.context.call("getCurrentAccessToken");
-        if (theRet is ANEError) throw theRet as ANEError;
-        var ret:AccessToken = new AccessToken(JSON.parse(theRet as String));
-        return ret;
+        var ret:* = FacebookANEContext.context.call("getCurrentAccessToken");
+        if (ret is ANEError) throw ret as ANEError;
+        return new AccessToken(JSON.parse(ret as String));
     }
 
     public static function refreshCurrentAccessTokenAsync(onTokenRefreshed:Function, onTokenRefreshFailed:Function):void {
-        var theRet:* = FacebookANEContext.context.call("refreshCurrentAccessTokenAsync",
+        var ret:* = FacebookANEContext.context.call("refreshCurrentAccessTokenAsync",
                 FacebookANEContext.createEventId(onTokenRefreshed), FacebookANEContext.createEventId(onTokenRefreshFailed));
-        if (theRet is ANEError) throw theRet as ANEError;
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     public static function get isCurrentAccessTokenActive():Boolean {
-        var theRet:* = FacebookANEContext.context.call("isCurrentAccessTokenActive");
-        if (theRet is ANEError) throw theRet as ANEError;
-        return theRet as Boolean;
+        var ret:* = FacebookANEContext.context.call("isCurrentAccessTokenActive");
+        if (ret is ANEError) throw ret as ANEError;
+        return ret as Boolean;
     }
 
     public static function get isDataAccessActive():Boolean {
-        var theRet:* = FacebookANEContext.context.call("isDataAccessActive");
-        if (theRet is ANEError) throw theRet as ANEError;
-        return theRet as Boolean;
+        var ret:* = FacebookANEContext.context.call("isDataAccessActive");
+        if (ret is ANEError) throw ret as ANEError;
+        return ret as Boolean;
     }
 
     public function get token():String {

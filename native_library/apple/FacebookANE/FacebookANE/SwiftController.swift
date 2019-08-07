@@ -33,6 +33,7 @@ public class SwiftController: NSObject, SharingDelegate {
     private var shareDialogs = [String: ShareDialog]()
     private var messageDialogs = [String: MessageDialog]()
     private var shareAPIs = [String: ShareAPI]()
+    
     // MARK: - Init
     
     func createGUID(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
@@ -60,13 +61,12 @@ public class SwiftController: NSObject, SharingDelegate {
     // MARK: - Settings
     
     func setIsDebugEnabled(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        warning("isDebugEnabled is not implemented in the iOS version")
+        Settings.isCodelessDebugLogEnabled = Bool(argv[0]) == true
         return nil
     }
     
     func isDebugEnabled(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        warning("isDebugEnabled is not implemented in the iOS version")
-        return false.toFREObject()
+        return Settings.isCodelessDebugLogEnabled.toFREObject()
     }
     
     func addLoggingBehavior(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
@@ -324,21 +324,13 @@ public class SwiftController: NSObject, SharingDelegate {
     }
     
     func shareDialog_create(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        guard argc > 3,
+        guard argc > 1,
             let content = createSharingContent(argv[0]),
-            let onShareSuccessEventId = String(argv[1]),
-            let onShareCancelEventId = String(argv[2]),
-            let onShareErrorEventId = String(argv[3]),
-            let mode = UInt(argv[4])
+            let mode = UInt(argv[1])
             else {
                 return FreArgError(message: "shareDialog_create").getError(#file, #line, #column)
         }
-
-        self.onShareSuccessEventId = onShareSuccessEventId
-        self.onShareCancelEventId = onShareCancelEventId
-        self.onShareErrorEventId = onShareErrorEventId
         let id = UUID().uuidString
-
         shareDialogs[id] = ShareDialog(fromViewController: UIApplication.shared.keyWindow?.rootViewController,
                                  content: content, delegate: self)
         shareDialogs[id]?.mode = ShareDialog.Mode(rawValue: mode) ?? .automatic
@@ -367,18 +359,11 @@ public class SwiftController: NSObject, SharingDelegate {
     }
     
     func messageDialog_create(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        guard argc > 3,
-            let content = createSharingContent(argv[0]),
-            let onShareSuccessEventId = String(argv[1]),
-            let onShareCancelEventId = String(argv[2]),
-            let onShareErrorEventId = String(argv[3])
+        guard argc > 0,
+            let content = createSharingContent(argv[0])
             else {
                 return FreArgError(message: "messageDialog_create").getError(#file, #line, #column)
         }
-
-        self.onShareSuccessEventId = onShareSuccessEventId
-        self.onShareCancelEventId = onShareCancelEventId
-        self.onShareErrorEventId = onShareErrorEventId
         let id = UUID().uuidString
         messageDialogs[id] = MessageDialog(content: content, delegate: self)
         return id.toFREObject()
@@ -404,20 +389,12 @@ public class SwiftController: NSObject, SharingDelegate {
     }
     
     func shareAPI_create(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        guard argc > 3,
-            let content = createSharingContent(argv[0]),
-            let onShareSuccessEventId = String(argv[1]),
-            let onShareCancelEventId = String(argv[2]),
-            let onShareErrorEventId = String(argv[3])
+        guard argc > 0,
+            let content = createSharingContent(argv[0])
             else {
                 return FreArgError(message: "shareAPI_create").getError(#file, #line, #column)
         }
-        
-        self.onShareSuccessEventId = onShareSuccessEventId
-        self.onShareCancelEventId = onShareCancelEventId
-        self.onShareErrorEventId = onShareErrorEventId
         let id = UUID().uuidString
-        
         shareAPIs[id] = ShareAPI(content: content, delegate: self)
         return id.toFREObject()
     }
@@ -442,4 +419,20 @@ public class SwiftController: NSObject, SharingDelegate {
         }
         return api.canShare.toFREObject()
     }
+    
+    func onShareSuccess(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        onShareSuccessEventId = String(argv[0])
+        return nil
+    }
+    
+    func onShareCancel(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        onShareCancelEventId = String(argv[0])
+        return nil
+    }
+    
+    func onShareError(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
+        onShareErrorEventId = String(argv[0])
+        return nil
+    }
+    
 }

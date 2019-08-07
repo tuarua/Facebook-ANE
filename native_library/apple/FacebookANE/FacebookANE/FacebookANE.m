@@ -66,6 +66,9 @@ CONTEXT_INIT(TRFBS) {
         ,MAP_FUNCTION(TRFBS, setIsAdvertiserIDCollectionEnabled)
         ,MAP_FUNCTION(TRFBS, setIsAutoLogAppEventsEnabled)
         ,MAP_FUNCTION(TRFBS, getSdkVersion)
+        ,MAP_FUNCTION(TRFBS, onShareSuccess)
+        ,MAP_FUNCTION(TRFBS, onShareCancel)
+        ,MAP_FUNCTION(TRFBS, onShareError)
     };
     
     SET_FUNCTIONS

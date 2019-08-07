@@ -22,24 +22,18 @@ public class MessageDialog {
     private var _id:String;
     private var _content:SharingContent;
     /**
-     * @param onSuccess
-     * @param onCancel
-     * @param onError
      * @param content The content to be shared. */
-    public function MessageDialog(content:SharingContent, onSuccess:Function, onCancel:Function, onError:Function) {
+    public function MessageDialog(content:SharingContent) {
         _content = content;
-        var theRet:* = FacebookANEContext.context.call("messageDialog_create", content,
-                FacebookANEContext.createEventId(onSuccess),
-                FacebookANEContext.createEventId(onCancel),
-                FacebookANEContext.createEventId(onError));
-        if (theRet is ANEError) throw theRet as ANEError;
-        _id = theRet as String;
+        var ret:* = FacebookANEContext.context.call("messageDialog_create", content);
+        if (ret is ANEError) throw ret as ANEError;
+        _id = ret as String;
     }
 
     /** Shows the dialog. */
     public function show():void {
-        var theRet:* = FacebookANEContext.context.call("messageDialog_show", _id, _content);
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = FacebookANEContext.context.call("messageDialog_show", _id, _content);
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /** A Boolean value that indicates whether the receiver can initiate a share.
@@ -49,9 +43,9 @@ public class MessageDialog {
      * checked before building up the content.
      * */
     public function get canShow():Boolean {
-        var theRet:* = FacebookANEContext.context.call("messageDialog_canShow", _id);
-        if (theRet is ANEError) throw theRet as ANEError;
-        return theRet as Boolean;
+        var ret:* = FacebookANEContext.context.call("messageDialog_canShow", _id);
+        if (ret is ANEError) throw ret as ANEError;
+        return ret as Boolean;
     }
 }
 }

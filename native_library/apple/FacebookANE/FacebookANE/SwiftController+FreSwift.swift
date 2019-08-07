@@ -54,6 +54,9 @@ extension SwiftController: FreSwiftMainController {
         functionsToSet["\(prefix)setIsAdvertiserIDCollectionEnabled"] = setIsAdvertiserIDCollectionEnabled
         functionsToSet["\(prefix)setIsAutoLogAppEventsEnabled"] = setIsAutoLogAppEventsEnabled
         functionsToSet["\(prefix)getSdkVersion"] = getSdkVersion
+        functionsToSet["\(prefix)onShareSuccess"] = onShareSuccess
+        functionsToSet["\(prefix)onShareCancel"] = onShareCancel
+        functionsToSet["\(prefix)onShareError"] = onShareError
 
         var arr: [String] = []
         for key in functionsToSet.keys {
