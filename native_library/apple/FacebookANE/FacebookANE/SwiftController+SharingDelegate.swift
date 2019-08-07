@@ -19,9 +19,7 @@ import FBSDKShareKit
 
 public extension SwiftController {
     public func sharer(_ sharer: Sharing, didCompleteWithResults results: [String: Any]) {
-        trace("didCompleteWithResults")
         guard let onSuccessEventId = self.onShareSuccessEventId else { return }
-        trace("results", results.debugDescription)
         var props = [String: Any]()
         props["eventId"] = onSuccessEventId
         props["data"] = ["postId": ""]
@@ -29,7 +27,6 @@ public extension SwiftController {
     }
     
     public func sharer(_ sharer: Sharing, didFailWithError error: Error) {
-        trace("didFailWithError")
         guard let onErrorEventId  = self.onShareErrorEventId  else { return }
         var props = [String: Any]()
         props["eventId"] = onErrorEventId
@@ -38,7 +35,6 @@ public extension SwiftController {
     }
     
     public func sharerDidCancel(_ sharer: Sharing) {
-        trace("onCancelEventId")
         guard let onCancelEventId = self.onShareCancelEventId else { return }
         var props = [String: Any]()
         props["eventId"] = onCancelEventId

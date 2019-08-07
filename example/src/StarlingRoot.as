@@ -46,9 +46,14 @@ public class StarlingRoot extends Sprite {
         trace("FacebookSdk.sdkVersion", FacebookSdk.sdkVersion);
         FacebookSdk.init("2861959030739282", onCurrentAccessTokenChanged);
         FacebookSdk.isDebugEnabled = true;
-        trace("FacebookANE.isInitialized:", FacebookSdk.isInitialized);
+        trace("FacebookSdk.isInitialized:", FacebookSdk.isInitialized);
         if (!FacebookSdk.isInitialized) return;
-        trace("hashKey:", FacebookSdk.hashKey);
+        trace("FacebookSdk.hashKey:", FacebookSdk.hashKey);
+
+        FacebookSdk.onShareSuccess = onShareSuccess;
+        FacebookSdk.onShareCancel = onShareCancel;
+        FacebookSdk.onShareError = onShareError;
+
         initMenu();
     }
 
@@ -98,9 +103,13 @@ public class StarlingRoot extends Sprite {
             var shareLinkContent:ShareLinkContent = new ShareLinkContent();
             shareLinkContent.contentUrl = "https://www.google.com";
 
-            var shareDialog:ShareDialog = new ShareDialog(shareLinkContent, onShareSuccess, onShareCancel, onShareError);
-            trace("shareDialog.canShow", shareDialog.canShow);
-            shareDialog.show();
+            var shareDialog:ShareDialog = new ShareDialog(shareLinkContent);
+            if (shareDialog.canShow) {
+                shareDialog.show();
+            } else {
+                statusLabel.text = "Can't share Link";
+            }
+
         }
     }
 
@@ -113,7 +122,7 @@ public class StarlingRoot extends Sprite {
             sharePhoto.imageUrl = "https://www.wired.com/wp-content/uploads/2014/07/Apple_Swift_Logo.png";
             sharePhotoContent.photos.push(sharePhoto);
 
-            var shareDialog:ShareDialog = new ShareDialog(sharePhotoContent, onShareSuccess, onShareCancel, onShareError);
+            var shareDialog:ShareDialog = new ShareDialog(sharePhotoContent);
             if (shareDialog.canShow) {
                 shareDialog.show();
             } else {
@@ -131,7 +140,7 @@ public class StarlingRoot extends Sprite {
             sharePhoto.videoUrl = "https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4";
             shareVideoContent.video = sharePhoto;
 
-            var shareDialog:ShareDialog = new ShareDialog(shareVideoContent, onShareSuccess, onShareCancel, onShareError);
+            var shareDialog:ShareDialog = new ShareDialog(shareVideoContent);
             if (shareDialog.canShow) {
                 shareDialog.show();
             } else {

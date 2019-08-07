@@ -1,6 +1,6 @@
 #!/bin/sh
 
-AneVersion="1.0.0"
+AneVersion="1.1.0"
 FreKotlinVersion="1.8.0"
 GsonVersion="2.8.4"
 SupportV4Version="27.1.0"

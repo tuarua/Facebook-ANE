@@ -15,7 +15,6 @@
  */
 package com.tuarua {
 import com.tuarua.facebook.LoginManager;
-import com.tuarua.facebook.ShareLinkContent;
 import com.tuarua.fre.ANEError;
 
 public class FacebookSdk {
@@ -160,6 +159,21 @@ public class FacebookSdk {
             _loginManager = new LoginManager();
         }
         return _loginManager;
+    }
+
+    public static function set onShareSuccess(value:Function):void {
+        var ret:* = FacebookANEContext.context.call("onShareSuccess", FacebookANEContext.createEventId(value));
+        if (ret is ANEError) throw ret as ANEError;
+    }
+
+    public static function set onShareCancel(value:Function):void {
+        var ret:* = FacebookANEContext.context.call("onShareCancel", FacebookANEContext.createEventId(value));
+        if (ret is ANEError) throw ret as ANEError;
+    }
+
+    public static function set onShareError(value:Function):void {
+        var ret:* = FacebookANEContext.context.call("onShareError", FacebookANEContext.createEventId(value));
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /** Controls the fb_codeless_debug logging event If not explicitly set, the default is true */

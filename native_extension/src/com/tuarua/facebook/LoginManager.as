@@ -24,19 +24,19 @@ public class LoginManager {
 
     public function login(permissions:Vector.<String>, onSuccess:Function, onCancel:Function, onError:Function,
                           withPublish:Boolean = false):void {
-        var theRet:* = FacebookANEContext.context.call("login", permissions, withPublish,
+        var ret:* = FacebookANEContext.context.call("login", permissions, withPublish,
                 FacebookANEContext.createEventId(onSuccess),
                 FacebookANEContext.createEventId(onCancel),
                 FacebookANEContext.createEventId(onError));
-        if (theRet is ANEError) throw theRet as ANEError;
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /**
      * Logs out the user.
      */
     public function logout():void {
-        var theRet:* = FacebookANEContext.context.call("logout");
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = FacebookANEContext.context.call("logout");
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /**
@@ -44,9 +44,9 @@ public class LoginManager {
      * @return the login behavior.
      */
     public function get loginBehavior():int {
-        var theRet:* = FacebookANEContext.context.call("getLoginBehavior");
-        if (theRet is ANEError) throw theRet as ANEError;
-        return int(theRet);
+        var ret:* = FacebookANEContext.context.call("getLoginBehavior");
+        if (ret is ANEError) throw ret as ANEError;
+        return int(ret);
     }
 
     /**
@@ -54,8 +54,8 @@ public class LoginManager {
      * @param loginBehavior The login behavior.
      */
     public function set loginBehavior(loginBehavior:int):void {
-        var theRet:* = FacebookANEContext.context.call("setLoginBehavior", loginBehavior);
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = FacebookANEContext.context.call("setLoginBehavior", loginBehavior);
+        if (ret is ANEError) throw ret as ANEError;
     }
 
     /**
@@ -63,9 +63,9 @@ public class LoginManager {
      * @return The default audience.
      */
     public function get defaultAudience():int {
-        var theRet:* = FacebookANEContext.context.call("getDefaultAudience");
-        if (theRet is ANEError) throw theRet as ANEError;
-        return int(theRet);
+        var ret:* = FacebookANEContext.context.call("getDefaultAudience");
+        if (ret is ANEError) throw ret as ANEError;
+        return int(ret);
     }
 
     /**
@@ -73,8 +73,8 @@ public class LoginManager {
      * @param defaultAudience The default audience.
      */
     public function set defaultAudience(defaultAudience:int):void {
-        var theRet:* = FacebookANEContext.context.call("setDefaultAudience", defaultAudience);
-        if (theRet is ANEError) throw theRet as ANEError;
+        var ret:* = FacebookANEContext.context.call("setDefaultAudience", defaultAudience);
+        if (ret is ANEError) throw ret as ANEError;
     }
 
 }
