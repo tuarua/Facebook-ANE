@@ -29,7 +29,7 @@ public class FacebookANEContext {
     private static var _context:ExtensionContext;
     private static var _isDisposed:Boolean;
     private static var argsAsJSON:Object;
-    public static var closures:Dictionary = new Dictionary();
+    public static var callbacks:Dictionary = new Dictionary();
 
     private static const ON_TOKEN_REFRESH:String = "FacebookEvent.OnTokenRefresh";
     private static const ON_TOKEN_REFRESH_FAILED:String = "FacebookEvent.OnTokenRefreshFailed";
@@ -57,17 +57,17 @@ public class FacebookANEContext {
         return _context;
     }
 
-    public static function createEventId(listener:Function):String {
-        var eventId:String;
+    public static function createCallback(listener:Function):String {
+        var id:String;
         if (listener != null) {
-            eventId = context.call("createGUID") as String;
-            closures[eventId] = listener;
+            id = context.call("createGUID") as String;
+            callbacks[id] = listener;
         }
-        return eventId;
+        return id;
     }
 
     private static function gotEvent(event:StatusEvent):void {
-        var closure:Function;
+        var callback:Function;
         // trace(event.code);
         switch (event.level) {
             case TRACE:
@@ -75,55 +75,55 @@ public class FacebookANEContext {
                 break;
             case ON_TOKEN_REFRESH:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null, new AccessToken(argsAsJSON.data));
-                delete closures[argsAsJSON.eventId];
+                callback = callbacks[argsAsJSON.eventId];
+                if (callback == null) return;
+                callback.call(null, new AccessToken(argsAsJSON.data));
+                delete callbacks[argsAsJSON.eventId];
                 break;
             case ON_CURRENT_ACCESS_TOKEN_CHANGED:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null, new AccessToken(argsAsJSON.data.oldToken),
+                callback = callbacks[argsAsJSON.eventId];
+                if (callback == null) return;
+                callback.call(null, new AccessToken(argsAsJSON.data.oldToken),
                         new AccessToken(argsAsJSON.data.newToken));
-                delete closures[argsAsJSON.eventId];
+                delete callbacks[argsAsJSON.eventId];
                 break;
             case ON_TOKEN_REFRESH_FAILED:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null, new FacebookError(argsAsJSON.data.message));
-                delete closures[argsAsJSON.eventId];
+                callback = callbacks[argsAsJSON.eventId];
+                if (callback == null) return;
+                callback.call(null, new FacebookError(argsAsJSON.data.message));
+                delete callbacks[argsAsJSON.eventId];
                 break;
             case ON_LOGIN_CANCEL:
             case ON_SHARE_CANCEL:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null);
-                delete closures[argsAsJSON.eventId];
+                callback = callbacks[argsAsJSON.eventId];
+                if (callback == null) return;
+                callback.call(null);
+                delete callbacks[argsAsJSON.eventId];
                 break;
             case ON_LOGIN_ERROR:
             case ON_SHARE_ERROR:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null, new FacebookError(argsAsJSON.data.message));
-                delete closures[argsAsJSON.eventId];
+                callback = callbacks[argsAsJSON.eventId];
+                if (callback == null) return;
+                callback.call(null, new FacebookError(argsAsJSON.data.message));
+                delete callbacks[argsAsJSON.eventId];
                 break;
             case ON_LOGIN_SUCCESS:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null, new LoginResult(argsAsJSON.data));
-                delete closures[argsAsJSON.eventId];
+                callback = callbacks[argsAsJSON.eventId];
+                if (callback == null) return;
+                callback.call(null, new LoginResult(argsAsJSON.data));
+                delete callbacks[argsAsJSON.eventId];
                 break;
             case ON_SHARE_SUCCESS:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null, argsAsJSON.data.postId);
-                delete closures[argsAsJSON.eventId];
+                callback = callbacks[argsAsJSON.eventId];
+                if (callback == null) return;
+                callback.call(null, argsAsJSON.data.postId);
+                delete callbacks[argsAsJSON.eventId];
                 break;
         }
     }

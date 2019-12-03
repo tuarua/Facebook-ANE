@@ -69,20 +69,7 @@ cp -R -L "$pathtome/../../native_library/apple/$PROJECTNAME/Build/Products/Relea
 cp -R -L "$pathtome/../../native_library/apple/$PROJECTNAME/Build/Products/Release-iphoneos/lib$PROJECTNAME$libSuffix.a" "$pathtome/platforms/ios/device/lib$PROJECTNAME.a"
 
 cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FreSwift.framework" "$pathtome/platforms/ios/simulator/Frameworks"
-cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FacebookCore.framework" "$pathtome/platforms/ios/simulator/Frameworks"
-cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FacebookLogin.framework" "$pathtome/platforms/ios/simulator/Frameworks"
-cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FacebookShare.framework" "$pathtome/platforms/ios/simulator/Frameworks"
-cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FBSDKCoreKit.framework" "$pathtome/platforms/ios/simulator/Frameworks"
-cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FBSDKLoginKit.framework" "$pathtome/platforms/ios/simulator/Frameworks"
-cp -R -L "$pathtome/../../example/ios_dependencies/simulator/Frameworks/FBSDKShareKit.framework" "$pathtome/platforms/ios/simulator/Frameworks"
-
 cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FreSwift.framework" "$pathtome/platforms/ios/device/Frameworks"
-cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FacebookCore.framework" "$pathtome/platforms/ios/device/Frameworks"
-cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FacebookLogin.framework" "$pathtome/platforms/ios/device/Frameworks"
-cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FacebookShare.framework" "$pathtome/platforms/ios/device/Frameworks"
-cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FBSDKCoreKit.framework" "$pathtome/platforms/ios/device/Frameworks"
-cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FBSDKLoginKit.framework" "$pathtome/platforms/ios/device/Frameworks"
-cp -R -L "$pathtome/../../example/ios_dependencies/device/Frameworks/FBSDKShareKit.framework" "$pathtome/platforms/ios/device/Frameworks"
 
 cp -R -L "$pathtome/../../native_library/apple/$PROJECTNAME/Build/Products/Release-iphonesimulator/$PROJECTNAME$fwSuffix.framework" "$pathtome/platforms/ios/simulator/Frameworks"
 cp -R -L "$pathtome/../../native_library/apple/$PROJECTNAME/Build/Products/Release-iphoneos/$PROJECTNAME$fwSuffix.framework" "$pathtome/platforms/ios/device/Frameworks"

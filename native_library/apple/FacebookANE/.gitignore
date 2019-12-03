@@ -9,6 +9,7 @@
 build/
 DerivedData/
 Index/
+Frameworks/
 
 ## Various settings
 *.pbxuser

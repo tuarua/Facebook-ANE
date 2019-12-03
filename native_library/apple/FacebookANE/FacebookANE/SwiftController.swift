@@ -18,9 +18,8 @@ import FreSwift
 
 import FacebookCore
 import FacebookLogin
-import FBSDKLoginKit
 import FacebookShare
-import FBSDKShareKit
+import SwiftyJSON
 
 public class SwiftController: NSObject, SharingDelegate {
     public static var TAG = "SwiftController"
@@ -235,6 +234,8 @@ public class SwiftController: NSObject, SharingDelegate {
             return 2.toFREObject()
         case .everyone:
             return 3.toFREObject()
+        @unknown default:
+            return 1.toFREObject()
         }
     }
     
@@ -364,6 +365,7 @@ public class SwiftController: NSObject, SharingDelegate {
             else {
                 return FreArgError(message: "messageDialog_create").getError(#file, #line, #column)
         }
+        warning("Starting August 15, 2019, updated versions of the Messenger app will no longer support Share to Messenger SDK.")
         let id = UUID().uuidString
         messageDialogs[id] = MessageDialog(content: content, delegate: self)
         return id.toFREObject()

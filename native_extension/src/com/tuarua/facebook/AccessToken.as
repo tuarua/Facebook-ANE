@@ -41,7 +41,7 @@ public class AccessToken {
 
     public static function refreshCurrentAccessTokenAsync(onTokenRefreshed:Function, onTokenRefreshFailed:Function):void {
         var ret:* = FacebookANEContext.context.call("refreshCurrentAccessTokenAsync",
-                FacebookANEContext.createEventId(onTokenRefreshed), FacebookANEContext.createEventId(onTokenRefreshFailed));
+                FacebookANEContext.createCallback(onTokenRefreshed), FacebookANEContext.createCallback(onTokenRefreshFailed));
         if (ret is ANEError) throw ret as ANEError;
     }
 

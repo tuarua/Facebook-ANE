@@ -18,10 +18,9 @@ import FreSwift
 
 import FacebookCore
 import FacebookLogin
-import FBSDKLoginKit
 
 public extension AccessToken {
-    public func toDictionary() -> [String: Any?] {
+    func toDictionary() -> [String: Any?] {
         return ["applicationId": appID,
                 "token": tokenString,
                 "userId": userID,

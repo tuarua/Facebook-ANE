@@ -24,7 +24,11 @@ import com.adobe.fre.FREContext
 import com.adobe.fre.FREObject
 import com.tuarua.frekotlin.*
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.util.Base64
+import com.adobe.air.AndroidActivityWrapper
+import com.adobe.air.FreKotlinActivityResultCallback
+import com.adobe.air.FreKotlinStateChangeCallback
 import com.facebook.*
 import com.facebook.login.DefaultAudience
 import com.facebook.login.LoginBehavior
@@ -50,7 +54,7 @@ import com.tuarua.facebookane.extensions.toMap
 import java.util.*
 
 @Suppress("unused", "UNUSED_PARAMETER", "UNCHECKED_CAST", "DEPRECATION")
-class KotlinController : FreKotlinMainController {
+class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, FreKotlinActivityResultCallback {
     private var onShareSuccessEventId: String? = null
     private var onShareCancelEventId: String? = null
     private var onShareErrorEventId: String? = null
@@ -68,7 +72,7 @@ class KotlinController : FreKotlinMainController {
     // FacebookSdk
 
     fun init(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 3 } ?: return FreArgException("init")
+        argv.takeIf { argv.size > 3 } ?: return FreArgException()
         val applicationId = String(argv[0]) ?: return null
         val onCurrentAccessTokenChangedEventId = String(argv[1])
         val isAdvertiserIDCollectionEnabled = Boolean(argv[2]) == true
@@ -102,7 +106,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun setIsDebugEnabled(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("setIsDebugEnabled")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         FacebookSdk.setIsDebugEnabled(Boolean(argv[0]) == true)
         return null
     }
@@ -112,13 +116,13 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun addLoggingBehavior(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("addLoggingBehavior")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         FacebookSdk.addLoggingBehavior(loggingBehaviorFromInt(Int(argv[0]) ?: 0))
         return null
     }
 
     fun removeLoggingBehavior(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("removeLoggingBehavior")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         FacebookSdk.removeLoggingBehavior(loggingBehaviorFromInt(Int(argv[0]) ?: 0))
         return null
     }
@@ -129,7 +133,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun isLoggingBehaviorEnabled(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("isLoggingBehaviorEnabled")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         return FacebookSdk.isLoggingBehaviorEnabled(loggingBehaviorFromInt(Int(argv[0])
                 ?: 0)).toFREObject()
     }
@@ -139,7 +143,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun setLimitEventAndDataUsage(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("removeLoggingBehavior")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         FacebookSdk.setLimitEventAndDataUsage(activity, Boolean(argv[0]) == true)
         return null
     }
@@ -169,14 +173,13 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun setIsAdvertiserIDCollectionEnabled(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 }
-                ?: return FreArgException("setIsAdvertiserIDCollectionEnabled")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         if (FacebookSdk.isInitialized()) FacebookSdk.setAdvertiserIDCollectionEnabled(Boolean(argv[0]) == true)
         return null
     }
 
     fun setIsAutoLogAppEventsEnabled(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("setIsAutoLogAppEventsEnabled")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         if (FacebookSdk.isInitialized()) FacebookSdk.setAutoLogAppEventsEnabled(Boolean(argv[0]) == true)
         return null
     }
@@ -184,7 +187,7 @@ class KotlinController : FreKotlinMainController {
     // LoginManager
 
     fun login(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 4 } ?: return FreArgException("removeLoggingBehavior")
+        argv.takeIf { argv.size > 4 } ?: return FreArgException()
         val permissions = List<String>(FREArray(argv[0]))
         val withPublish = Boolean(argv[1]) == true
         val onSuccessEventId = String(argv[2]) ?: return null
@@ -232,8 +235,9 @@ class KotlinController : FreKotlinMainController {
         return LoginManager.getInstance().loginBehavior.ordinal.toFREObject()
     }
 
+
     fun setLoginBehavior(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("setLoginBehavior")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         when (Int(argv[0]) ?: 0) {
             0 -> LoginManager.getInstance().loginBehavior = LoginBehavior.NATIVE_WITH_FALLBACK
             1 -> LoginManager.getInstance().loginBehavior = LoginBehavior.NATIVE_ONLY
@@ -251,7 +255,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun setDefaultAudience(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("setDefaultAudience")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         when (Int(argv[0]) ?: 0) {
             0 -> LoginManager.getInstance().defaultAudience = DefaultAudience.NONE
             1 -> LoginManager.getInstance().defaultAudience = DefaultAudience.ONLY_ME
@@ -269,7 +273,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun refreshCurrentAccessTokenAsync(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 1 } ?: return FreArgException("refreshCurrentAccessTokenAsync")
+        argv.takeIf { argv.size > 1 } ?: return FreArgException()
         val onTokenRefreshedEventId = String(argv[0]) ?: return null
         val onTokenRefreshFailedEventId = String(argv[1]) ?: return null
         AccessToken.refreshCurrentAccessTokenAsync(object : AccessToken.AccessTokenRefreshCallback {
@@ -314,19 +318,19 @@ class KotlinController : FreKotlinMainController {
 
     // Share
     fun onShareSuccess(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("onShareSuccess")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         onShareSuccessEventId = String(argv[0])
         return null
     }
 
     fun onShareCancel(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("onShareCancel")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         onShareCancelEventId = String(argv[0])
         return null
     }
 
     fun onShareError(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 0 } ?: return FreArgException("onShareError")
+        argv.takeIf { argv.size > 0 } ?: return FreArgException()
         onShareErrorEventId = String(argv[0])
         return null
     }
@@ -341,7 +345,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun shareDialog_create(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 1 } ?: return FreArgException("shareDialog_create")
+        argv.takeIf { argv.size > 1 } ?: return FreArgException()
         val id = UUID.randomUUID().toString()
         val dialog = ShareDialog(activity)
         dialog.registerCallback(callbackManager, ResultFacebookCallback(dialog))
@@ -350,7 +354,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun shareDialog_show(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 1 } ?: return FreArgException("shareDialog_show")
+        argv.takeIf { argv.size > 1 } ?: return FreArgException()
         val id = String(argv[0]) ?: return null
         val content = createSharingContent(argv[1]) ?: return null
         shareDialogs[id]?.show(content)
@@ -362,7 +366,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun messageDialog_create(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 1 } ?: return FreArgException("messageDialog_create")
+        argv.takeIf { argv.size > 1 } ?: return FreArgException()
         val id = UUID.randomUUID().toString()
         val dialog = MessageDialog(activity)
         dialog.registerCallback(callbackManager, ResultFacebookCallback(dialog))
@@ -371,7 +375,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun messageDialog_show(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 1 } ?: return FreArgException("messageDialog_show")
+        argv.takeIf { argv.size > 1 } ?: return FreArgException()
         val id = String(argv[0]) ?: return null
         val content = createSharingContent(argv[1]) ?: return null
         messageDialogs[id]?.show(content)
@@ -383,7 +387,7 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun shareAPI_create(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 3 } ?: return FreArgException("shareAPI_create")
+        argv.takeIf { argv.size > 3 } ?: return FreArgException()
         val content = createSharingContent(argv[1]) ?: return null
         val id = UUID.randomUUID().toString()
         val api = ShareApi(content)
@@ -392,21 +396,18 @@ class KotlinController : FreKotlinMainController {
     }
 
     fun shareAPI_share(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 1 } ?: return FreArgException("shareAPI_canShare")
+        argv.takeIf { argv.size > 1 } ?: return FreArgException()
         val id = String(argv[0]) ?: return null
         shareAPIs[id]?.share(ResultFacebookCallback(null))
         return null
     }
 
     fun shareAPI_canShare(ctx: FREContext, argv: FREArgv): FREObject? {
-        argv.takeIf { argv.size > 1 } ?: return FreArgException("shareAPI_canShare")
+        argv.takeIf { argv.size > 1 } ?: return FreArgException()
         val id = String(argv[0]) ?: return null
         return shareAPIs[id]?.canShare()?.toFREObject()
     }
 
-    fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent) {
-        callbackManager?.onActivityResult(requestCode, resultCode, intent)
-    }
 
     inner class ResultFacebookCallback(private val dialog: FacebookDialogBase<ShareContent<*, *>, Sharer.Result>?) : FacebookCallback<Sharer.Result> {
         override fun onSuccess(result: Sharer.Result?) {
@@ -440,7 +441,18 @@ class KotlinController : FreKotlinMainController {
         }
     }
 
-    override val TAG: String
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+        callbackManager?.onActivityResult(requestCode, resultCode, intent)
+    }
+
+    override fun onConfigurationChanged(configuration: Configuration?) {
+    }
+
+    override fun onActivityStateChanged(activityState: AndroidActivityWrapper.ActivityState?) {
+
+    }
+
+    override val TAG: String?
         get() = this::class.java.simpleName
     private var _context: FREContext? = null
     override var context: FREContext?

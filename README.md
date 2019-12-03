@@ -120,12 +120,11 @@ You will need:
 
 - IntelliJ IDEA
 - AIR 32 or greater
-- Xcode 10.1
+- Xcode 11.2
 - [wget](http://rudix.org/packages/wget.html) on macOS
 - Powershell on Windows
 - Android Studio 3 if you wish to edit the Android source
 
 ### References
 * [https://developers.facebook.com/docs/facebook-login/android]
-* [https://developers.facebook.com/docs/swift/getting-started] 
-* [https://github.com/facebook/facebook-swift-sdk]
+* [https://developers.facebook.com/docs/swift] 

@@ -12,13 +12,14 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+
 import Foundation
 import FreSwift
 import FacebookShare
-import FBSDKShareKit
+import SwiftyJSON
 
 public extension SwiftController {
-    public func sharer(_ sharer: Sharing, didCompleteWithResults results: [String: Any]) {
+    func sharer(_ sharer: Sharing, didCompleteWithResults results: [String: Any]) {
         guard let onSuccessEventId = self.onShareSuccessEventId else { return }
         var props = [String: Any]()
         props["eventId"] = onSuccessEventId
@@ -26,7 +27,7 @@ public extension SwiftController {
         self.dispatchEvent(name: FacebookEvent.ON_SHARE_SUCCESS, value: JSON(props).description)
     }
     
-    public func sharer(_ sharer: Sharing, didFailWithError error: Error) {
+    func sharer(_ sharer: Sharing, didFailWithError error: Error) {
         guard let onErrorEventId  = self.onShareErrorEventId  else { return }
         var props = [String: Any]()
         props["eventId"] = onErrorEventId
@@ -34,7 +35,7 @@ public extension SwiftController {
         self.dispatchEvent(name: FacebookEvent.ON_SHARE_ERROR, value: JSON(props).description)  
     }
     
-    public func sharerDidCancel(_ sharer: Sharing) {
+    func sharerDidCancel(_ sharer: Sharing) {
         guard let onCancelEventId = self.onShareCancelEventId else { return }
         var props = [String: Any]()
         props["eventId"] = onCancelEventId

@@ -18,7 +18,6 @@ import FreSwift
 
 import FacebookCore
 import FacebookShare
-import FBSDKShareKit
 
 public extension SharePhoto {
     convenience init?(_ freObject: FREObject?) {
@@ -33,11 +32,11 @@ public extension SharePhoto {
 }
 
 public extension FreObjectSwift {
-    public subscript(dynamicMember name: String) -> SharePhoto? {
+    subscript(dynamicMember name: String) -> SharePhoto? {
         get { return SharePhoto(rawValue?[name]) }
         set { rawValue?[name] = nil }
     }
-    public subscript(dynamicMember name: String) -> [SharePhoto] {
+    subscript(dynamicMember name: String) -> [SharePhoto] {
         get { return [SharePhoto](rawValue?[name]) ?? [] }
         set { rawValue?[name] = nil }
     }

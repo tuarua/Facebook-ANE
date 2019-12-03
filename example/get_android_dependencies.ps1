@@ -1,10 +1,10 @@
-$AneVersion = "1.1.0"
-$FreKotlinVersion = "1.8.0"
+$AneVersion = "1.2.0"
+$FreKotlinVersion = "1.9.1"
 $GsonVersion = "2.8.4"
 $SupportV4Version = "27.1.0"
 $LifeCycleVersion = "1.1.1"
 $BoltsVersion = "1.4.0"
-$FacebookVersion = "5.1.0"
+$FacebookVersion = "5.11.2"
 
 $currentDir = (Get-Item -Path ".\" -Verbose).FullName
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12

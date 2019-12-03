@@ -18,7 +18,6 @@ import FreSwift
 
 import FacebookCore
 import FacebookShare
-import FBSDKShareKit
 
 public extension ShareVideo {
     convenience init?(_ freObject: FREObject?) {
@@ -33,7 +32,7 @@ public extension ShareVideo {
 }
 
 public extension FreObjectSwift {
-    public subscript(dynamicMember name: String) -> ShareVideo? {
+    subscript(dynamicMember name: String) -> ShareVideo? {
         get { return ShareVideo(rawValue?[name]) }
         set { rawValue?[name] = nil }
     }

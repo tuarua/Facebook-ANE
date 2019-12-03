@@ -1,12 +1,12 @@
 #!/bin/sh
 
-AneVersion="1.1.0"
-FreKotlinVersion="1.8.0"
+AneVersion="1.2.0"
+FreKotlinVersion="1.9.1"
 GsonVersion="2.8.4"
 SupportV4Version="27.1.0"
 LifeCycleVersion="1.1.1"
 BoltsVersion="1.4.0"
-FacebookVersion="5.1.0"
+FacebookVersion="5.11.2"
 
 wget -O android_dependencies/com.tuarua.frekotlin-$FreKotlinVersion.ane https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/kotlin/com.tuarua.frekotlin-$FreKotlinVersion.ane?raw=true
 wget -O android_dependencies/com.google.code.gson.gson-$GsonVersion.ane https://github.com/tuarua/Android-ANE-Dependencies/blob/master/anes/misc/com.google.code.gson.gson-$GsonVersion.ane?raw=true
