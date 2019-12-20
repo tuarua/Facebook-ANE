@@ -4,7 +4,7 @@
     <id>com.tuarua.facebook.example</id>
     <filename>FacebookANESample</filename>
     <name>FacebookANESample</name>
-    <versionNumber>1.0.0</versionNumber>
+    <versionNumber>1.2.0</versionNumber>
 
     <initialWindow>
         <content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
@@ -58,11 +58,10 @@
     <extensions>
         <extensionID>com.tuarua.frekotlin</extensionID>
         <extensionID>com.google.code.gson.gson</extensionID>
-        <extensionID>com.android.support.support-v4</extensionID>
-        <extensionID>android.arch.lifecycle.runtime</extensionID>
-        <extensionID>com.android.support.appcompat-v7</extensionID>
-        <extensionID>com.android.support.cardview-v7</extensionID>
-        <extensionID>com.android.support.customtabs</extensionID>
+        <extensionID>androidx.legacy.legacy-support-v4</extensionID>
+        <extensionID>androidx.appcompat.appcompat</extensionID>
+        <extensionID>androidx.cardview.cardview</extensionID>
+        <extensionID>androidx.browser.browser</extensionID>
         <extensionID>com.parse.bolts.bolts-android</extensionID>
         <extensionID>com.facebook.android.facebook-android-sdk</extensionID>
         <extensionID>com.tuarua.FacebookANE</extensionID>

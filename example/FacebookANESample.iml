@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="Flex" version="4">
-  <component name="FlexBuildConfigurationManager" active="iOS Device">
+  <component name="FlexBuildConfigurationManager" active="Android Device">
     <configurations>
       <configuration name="Android Device" target-platform="Mobile" pure-as="true" main-class="Main" output-file="Main.swf" output-folder="$MODULE_DIR$/bin-release">
         <dependencies>
@@ -8,34 +8,31 @@
             <entry library-name="starling" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.google.code.gson.gson-2.8.4" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-name="FacebookANE" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.android.support.support-v4-27.1.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
             <entry library-name="com.parse.bolts.bolts-android-1.4.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-name="com.android.support.appcompat-v7-27.1.0" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.android.support.cardview-v7-27.1.0" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="android.arch.lifecycle.runtime-1.1.1" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.android.support.customtabs-27.1.0" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
-            <entry library-name="com.facebook.android.facebook-android-sdk-5.11.2" library-level="project">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-name="com.tuarua.frekotlin-1.9.1" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.google.code.gson.gson-2.8.6" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="androidx.legacy.legacy-support-v4-1.0.0" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="androidx.appcompat.appcompat-1.0.0" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="com.facebook.android.facebook-android-sdk-5.13.0" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="androidx.browser.browser-1.0.0" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="androidx.cardview.cardview-1.0.0" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -86,7 +83,7 @@
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/src/Assets.car" path-in-package="Assets.car" />
             <FilePathAndPathInPackage file-path="$MODULE_DIR$/system" path-in-package="." />
           </files-to-package>
-          <AirSigningOptions keystore-path="$USER_HOME$/Documents/appleCertsProv/2020/dev/tua_rua_dev_2020.p12" provisioning-profile-path="$USER_HOME$/Documents/appleCertsProv/2019/dev/Tua_Rua_Dev_Provisioning.mobileprovision" />
+          <AirSigningOptions keystore-path="$USER_HOME$/Documents/appleCertsProv/2020/dev/tua_rua_dev_2020.p12" provisioning-profile-path="$USER_HOME$/Documents/appleCertsProv/2020/dev/Tua_Rua_Dev_Provisioning.mobileprovision" />
         </packaging-ios>
       </configuration>
     </configurations>
@@ -115,5 +112,11 @@
     <orderEntry type="library" exported="" name="com.android.support.customtabs-27.1.0" level="project" />
     <orderEntry type="library" exported="" name="com.facebook.android.facebook-android-sdk-5.11.2" level="project" />
     <orderEntry type="library" exported="" name="com.tuarua.frekotlin-1.9.1" level="project" />
+    <orderEntry type="library" exported="" name="com.google.code.gson.gson-2.8.6" level="project" />
+    <orderEntry type="library" exported="" name="androidx.legacy.legacy-support-v4-1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="androidx.appcompat.appcompat-1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="com.facebook.android.facebook-android-sdk-5.13.0" level="project" />
+    <orderEntry type="library" exported="" name="androidx.browser.browser-1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="androidx.cardview.cardview-1.0.0" level="project" />
   </component>
 </module>
