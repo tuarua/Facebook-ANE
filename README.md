@@ -22,11 +22,10 @@ PS get_android_dependencies.ps1
 <extensions>
 <extensionID>com.tuarua.frekotlin</extensionID>
 <extensionID>com.google.code.gson.gson</extensionID>
-<extensionID>com.android.support.support-v4</extensionID>
-<extensionID>android.arch.lifecycle.runtime</extensionID>
-<extensionID>com.android.support.appcompat-v7</extensionID>
-<extensionID>com.android.support.cardview-v7</extensionID>
-<extensionID>com.android.support.customtabs</extensionID>
+<extensionID>androidx.legacy.legacy-support-v4</extensionID>
+<extensionID>androidx.appcompat.appcompat</extensionID>
+<extensionID>androidx.cardview.cardview</extensionID>
+<extensionID>androidx.browser.browser</extensionID>
 <extensionID>com.parse.bolts.bolts-android</extensionID>
 <extensionID>com.facebook.android.facebook-android-sdk</extensionID>
 <extensionID>com.tuarua.FacebookANE</extensionID>
@@ -120,7 +119,7 @@ You will need:
 
 - IntelliJ IDEA
 - AIR 32 or greater
-- Xcode 11.2
+- Xcode 11.3
 - [wget](http://rudix.org/packages/wget.html) on macOS
 - Powershell on Windows
 - Android Studio 3 if you wish to edit the Android source
