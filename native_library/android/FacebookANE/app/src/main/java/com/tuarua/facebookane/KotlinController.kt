@@ -55,9 +55,9 @@ import java.util.*
 
 @Suppress("unused", "UNUSED_PARAMETER", "UNCHECKED_CAST", "DEPRECATION")
 class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, FreKotlinActivityResultCallback {
-    private var onShareSuccessEventId: String? = null
-    private var onShareCancelEventId: String? = null
-    private var onShareErrorEventId: String? = null
+    private var onShareSuccessCallbackId: String? = null
+    private var onShareCancelCallbackId: String? = null
+    private var onShareErrorCallbackId: String? = null
     private var callbackManager: CallbackManager? = null
     private lateinit var accessTokenTracker: AccessTokenTracker
     private lateinit var activity: Activity
@@ -74,7 +74,7 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
     fun init(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 3 } ?: return FreArgException()
         val applicationId = String(argv[0]) ?: return null
-        val onCurrentAccessTokenChangedEventId = String(argv[1])
+        val onCurrentAccessTokenChangedCallbackId = String(argv[1])
         val isAdvertiserIDCollectionEnabled = Boolean(argv[2]) == true
         val isAutoLogAppEventsEnabled = Boolean(argv[3]) == true
 
@@ -87,11 +87,11 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
         FacebookSdk.setAutoLogAppEventsEnabled(isAutoLogAppEventsEnabled)
 
         callbackManager = CallbackManager.Factory.create()
-        if (onCurrentAccessTokenChangedEventId != null) {
+        if (onCurrentAccessTokenChangedCallbackId != null) {
             accessTokenTracker = object : AccessTokenTracker() {
                 override fun onCurrentAccessTokenChanged(oldToken: AccessToken?, newToken: AccessToken?) {
                     dispatchEvent(FacebookEvent.ON_CURRENT_ACCESS_TOKEN_CHANGED,
-                            Gson().toJson(FacebookEvent(onCurrentAccessTokenChangedEventId,
+                            Gson().toJson(FacebookEvent(onCurrentAccessTokenChangedCallbackId,
                                     mapOf("oldToken" to oldToken.toMap(), "newToken" to newToken.toMap())))
                     )
                 }
@@ -190,14 +190,14 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
         argv.takeIf { argv.size > 4 } ?: return FreArgException()
         val permissions = List<String>(FREArray(argv[0]))
         val withPublish = Boolean(argv[1]) == true
-        val onSuccessEventId = String(argv[2]) ?: return null
-        val onCancelEventId = String(argv[3]) ?: return null
-        val onErrorEventId = String(argv[4]) ?: return null
+        val onSuccessCallbackId = String(argv[2]) ?: return null
+        val onCancelCallbackId = String(argv[3]) ?: return null
+        val onErrorCallbackId = String(argv[4]) ?: return null
 
         LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 dispatchEvent(FacebookEvent.ON_LOGIN_SUCCESS,
-                        Gson().toJson(FacebookEvent(onSuccessEventId,
+                        Gson().toJson(FacebookEvent(onSuccessCallbackId,
                                 mapOf("accessToken" to loginResult.accessToken.toMap(),
                                         "recentlyGrantedPermissions" to loginResult.recentlyGrantedPermissions,
                                         "recentlyDeniedPermissions" to loginResult.recentlyDeniedPermissions)))
@@ -207,14 +207,14 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
 
             override fun onCancel() {
                 dispatchEvent(FacebookEvent.ON_LOGIN_CANCEL,
-                        Gson().toJson(FacebookEvent(onCancelEventId))
+                        Gson().toJson(FacebookEvent(onCancelCallbackId))
                 )
                 LoginManager.getInstance().unregisterCallback(callbackManager)
             }
 
             override fun onError(error: FacebookException) {
                 dispatchEvent(FacebookEvent.ON_LOGIN_ERROR,
-                        Gson().toJson(FacebookEvent(onErrorEventId,
+                        Gson().toJson(FacebookEvent(onErrorCallbackId,
                                 mapOf("message" to error.localizedMessage))
                         )
                 )
@@ -274,18 +274,18 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
 
     fun refreshCurrentAccessTokenAsync(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 1 } ?: return FreArgException()
-        val onTokenRefreshedEventId = String(argv[0]) ?: return null
-        val onTokenRefreshFailedEventId = String(argv[1]) ?: return null
+        val onTokenRefreshedCallbackId = String(argv[0]) ?: return null
+        val onTokenRefreshFailedCallbackId = String(argv[1]) ?: return null
         AccessToken.refreshCurrentAccessTokenAsync(object : AccessToken.AccessTokenRefreshCallback {
             override fun OnTokenRefreshed(accessToken: AccessToken) {
                 dispatchEvent(FacebookEvent.ON_TOKEN_REFRESH,
-                        Gson().toJson(FacebookEvent(onTokenRefreshedEventId, accessToken.toMap()))
+                        Gson().toJson(FacebookEvent(onTokenRefreshedCallbackId, accessToken.toMap()))
                 )
             }
 
             override fun OnTokenRefreshFailed(exception: FacebookException) {
                 dispatchEvent(FacebookEvent.ON_TOKEN_REFRESH_FAILED,
-                        Gson().toJson(FacebookEvent(onTokenRefreshFailedEventId,
+                        Gson().toJson(FacebookEvent(onTokenRefreshFailedCallbackId,
                                 mapOf("message" to exception.localizedMessage))
                         )
                 )
@@ -319,19 +319,19 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
     // Share
     fun onShareSuccess(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return FreArgException()
-        onShareSuccessEventId = String(argv[0])
+        onShareSuccessCallbackId = String(argv[0])
         return null
     }
 
     fun onShareCancel(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return FreArgException()
-        onShareCancelEventId = String(argv[0])
+        onShareCancelCallbackId = String(argv[0])
         return null
     }
 
     fun onShareError(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return FreArgException()
-        onShareErrorEventId = String(argv[0])
+        onShareErrorCallbackId = String(argv[0])
         return null
     }
 
@@ -411,9 +411,9 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
 
     inner class ResultFacebookCallback(private val dialog: FacebookDialogBase<ShareContent<*, *>, Sharer.Result>?) : FacebookCallback<Sharer.Result> {
         override fun onSuccess(result: Sharer.Result?) {
-            if (onShareSuccessEventId != null) {
+            if (onShareSuccessCallbackId != null) {
                 dispatchEvent(FacebookEvent.ON_SHARE_SUCCESS,
-                        Gson().toJson(FacebookEvent(onShareSuccessEventId,
+                        Gson().toJson(FacebookEvent(onShareSuccessCallbackId,
                                 mapOf("postId" to result?.postId)))
                 )
             }
@@ -421,18 +421,18 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
         }
 
         override fun onCancel() {
-            if (onShareCancelEventId != null) {
+            if (onShareCancelCallbackId != null) {
                 dispatchEvent(FacebookEvent.ON_SHARE_CANCEL,
-                        Gson().toJson(FacebookEvent(onShareCancelEventId))
+                        Gson().toJson(FacebookEvent(onShareCancelCallbackId))
                 )
             }
             dialog?.registerCallback(callbackManager, null)
         }
 
         override fun onError(error: FacebookException?) {
-            if (onShareErrorEventId != null) {
+            if (onShareErrorCallbackId != null) {
                 dispatchEvent(FacebookEvent.ON_SHARE_ERROR,
-                        Gson().toJson(FacebookEvent(onShareErrorEventId,
+                        Gson().toJson(FacebookEvent(onShareErrorCallbackId,
                                 mapOf("message" to error?.localizedMessage))
                         )
                 )

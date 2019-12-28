@@ -66,64 +66,48 @@ public class FacebookANEContext {
         return id;
     }
 
+    private static function callCallback(callbackId:String, ... args):void {
+        var callback:Function = callbacks[callbackId];
+        if (callback == null) return;
+        callback.apply(null, args);
+        delete callbacks[callbackId];
+    }
+
     private static function gotEvent(event:StatusEvent):void {
-        var callback:Function;
-        // trace(event.code);
         switch (event.level) {
             case TRACE:
                 trace("[" + NAME + "]", event.code);
                 break;
             case ON_TOKEN_REFRESH:
                 argsAsJSON = JSON.parse(event.code);
-                callback = callbacks[argsAsJSON.eventId];
-                if (callback == null) return;
-                callback.call(null, new AccessToken(argsAsJSON.data));
-                delete callbacks[argsAsJSON.eventId];
+                callCallback(argsAsJSON.callbackId, new AccessToken(argsAsJSON.data));
                 break;
             case ON_CURRENT_ACCESS_TOKEN_CHANGED:
                 argsAsJSON = JSON.parse(event.code);
-                callback = callbacks[argsAsJSON.eventId];
-                if (callback == null) return;
-                callback.call(null, new AccessToken(argsAsJSON.data.oldToken),
+                callCallback(argsAsJSON.callbackId, new AccessToken(argsAsJSON.data.oldToken),
                         new AccessToken(argsAsJSON.data.newToken));
-                delete callbacks[argsAsJSON.eventId];
                 break;
             case ON_TOKEN_REFRESH_FAILED:
                 argsAsJSON = JSON.parse(event.code);
-                callback = callbacks[argsAsJSON.eventId];
-                if (callback == null) return;
-                callback.call(null, new FacebookError(argsAsJSON.data.message));
-                delete callbacks[argsAsJSON.eventId];
+                callCallback(argsAsJSON.callbackId, new FacebookError(argsAsJSON.data.message));
                 break;
             case ON_LOGIN_CANCEL:
             case ON_SHARE_CANCEL:
                 argsAsJSON = JSON.parse(event.code);
-                callback = callbacks[argsAsJSON.eventId];
-                if (callback == null) return;
-                callback.call(null);
-                delete callbacks[argsAsJSON.eventId];
+                callCallback(argsAsJSON.callbackId);
                 break;
             case ON_LOGIN_ERROR:
             case ON_SHARE_ERROR:
                 argsAsJSON = JSON.parse(event.code);
-                callback = callbacks[argsAsJSON.eventId];
-                if (callback == null) return;
-                callback.call(null, new FacebookError(argsAsJSON.data.message));
-                delete callbacks[argsAsJSON.eventId];
+                callCallback(argsAsJSON.callbackId, new FacebookError(argsAsJSON.data.message));
                 break;
             case ON_LOGIN_SUCCESS:
                 argsAsJSON = JSON.parse(event.code);
-                callback = callbacks[argsAsJSON.eventId];
-                if (callback == null) return;
-                callback.call(null, new LoginResult(argsAsJSON.data));
-                delete callbacks[argsAsJSON.eventId];
+                callCallback(argsAsJSON.callbackId, new LoginResult(argsAsJSON.data));
                 break;
             case ON_SHARE_SUCCESS:
                 argsAsJSON = JSON.parse(event.code);
-                callback = callbacks[argsAsJSON.eventId];
-                if (callback == null) return;
-                callback.call(null, argsAsJSON.data.postId);
-                delete callbacks[argsAsJSON.eventId];
+                callCallback(argsAsJSON.callbackId, argsAsJSON.data.postId);
                 break;
         }
     }
