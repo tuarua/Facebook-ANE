@@ -1,6 +1,6 @@
 ### 1.2.0 
 - AND: Updated to jetpack/androidx
-- AND: Updated to FreKotlin 1.9.1
+- AND: Updated to FreKotlin 1.9.5
 - iOS: Updated to FreSwift 4.2.0
 - iOS: upgrade to 5.13.1 FBSDK
 - iOS: use Swift Package Manager

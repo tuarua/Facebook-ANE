@@ -21,7 +21,7 @@
 			<manifest android:installLocation="auto">
 			    <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="28" />
 			    <uses-permission android:name="android.permission.INTERNET"/>
-			    <application>
+			    <application android:enabled="true">
                     <intent-filter>
                         <action android:name="android.intent.action.MAIN" />
                         <category android:name="android.intent.category.LAUNCHER" />
@@ -36,6 +36,7 @@
                             <data android:scheme="fb2861959030739282" />
                         </intent-filter>
                     </activity>
+                    <meta-data android:name="android.max_aspect" android:value="2.1" />
                     <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled" android:value="true"/>
                     <meta-data android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled" android:value="false"/>
                     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ 2861959030739282"/>
