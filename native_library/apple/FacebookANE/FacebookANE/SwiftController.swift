@@ -45,7 +45,7 @@ public class SwiftController: NSObject, SharingDelegate {
             let isAdvertiserIDCollectionEnabled = Bool(argv[2]),
             let isAutoLogAppEventsEnabled = Bool(argv[3])
             else {
-                return FreArgError(message: "initController").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         if let appDidFinishLaunchingNotification = appDidFinishLaunchingNotification,
             let application = appDidFinishLaunchingNotification.object as? UIApplication {
@@ -72,7 +72,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let behaviour = Int(argv[0])
             else {
-                return FreArgError(message: "addLoggingBehavior").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         Settings.enableLoggingBehavior(loggingBehaviorFromInt(behaviour))
         return nil
@@ -82,7 +82,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let behaviour = Int(argv[0])
             else {
-                return FreArgError(message: "removeLoggingBehavior").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         Settings.disableLoggingBehavior(loggingBehaviorFromInt(behaviour))
         return nil
@@ -99,7 +99,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let behaviour = Int(argv[0])
             else {
-                return FreArgError(message: "isLoggingBehaviorEnabled").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         for loginBehaviour in Settings.loggingBehaviors {
             if loggingBehaviorFromInt(behaviour) == loginBehaviour {
@@ -177,7 +177,7 @@ public class SwiftController: NSObject, SharingDelegate {
             let onCancelCallbackId = String(argv[3]),
             let onErrorCallbackId = String(argv[4])
             else {
-                return FreArgError(message: "login").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         let loginManager = LoginManager()
         loginManager.logIn(permissions: permissions.compactMap { Permission(stringLiteral: $0) },
@@ -243,7 +243,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let defaultAudience = UInt(argv[0])
             else {
-                return FreArgError(message: "setDefaultAudience").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         let loginManager = LoginManager()
         switch defaultAudience {
@@ -273,7 +273,7 @@ public class SwiftController: NSObject, SharingDelegate {
             let onTokenRefreshedCallbackId = String(argv[0]),
             let onTokenRefreshFailedCallbackId = String(argv[1])
             else {
-                return FreArgError(message: "setDefaultAudience").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         AccessToken.refreshCurrentAccessToken { _, _, error in
             var props = [String: Any]()
@@ -329,7 +329,7 @@ public class SwiftController: NSObject, SharingDelegate {
             let content = createSharingContent(argv[0]),
             let mode = UInt(argv[1])
             else {
-                return FreArgError(message: "shareDialog_create").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         let id = UUID().uuidString
         shareDialogs[id] = ShareDialog(fromViewController: UIApplication.shared.keyWindow?.rootViewController,
@@ -343,7 +343,7 @@ public class SwiftController: NSObject, SharingDelegate {
             let id = String(argv[0]),
             let dialog = shareDialogs[id]
             else {
-                return FreArgError(message: "shareDialog_show").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         dialog.show()
         return nil
@@ -354,7 +354,7 @@ public class SwiftController: NSObject, SharingDelegate {
             let id = String(argv[0]),
             let dialog = shareDialogs[id]
             else {
-                return FreArgError(message: "shareDialog_canShow").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         return dialog.canShow.toFREObject()
     }
@@ -363,7 +363,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let content = createSharingContent(argv[0])
             else {
-                return FreArgError(message: "messageDialog_create").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         warning("Starting August 15, 2019, updated versions of the Messenger app will no longer support Share to Messenger SDK.")
         let id = UUID().uuidString
@@ -375,7 +375,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let id = String(argv[0])
             else {
-                return FreArgError(message: "messageDialog_show").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         messageDialogs[id]?.show()
         return nil
@@ -385,7 +385,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let id = String(argv[0])
             else {
-                return FreArgError(message: "messageDialog_canShow").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         return messageDialogs[id]?.canShow.toFREObject()
     }
@@ -394,7 +394,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let content = createSharingContent(argv[0])
             else {
-                return FreArgError(message: "shareAPI_create").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         let id = UUID().uuidString
         shareAPIs[id] = ShareAPI(content: content, delegate: self)
@@ -406,7 +406,7 @@ public class SwiftController: NSObject, SharingDelegate {
             let id = String(argv[0]),
             let api = shareAPIs[id]
             else {
-                return FreArgError(message: "shareAPI_share").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         api.share()
         return nil
@@ -417,7 +417,7 @@ public class SwiftController: NSObject, SharingDelegate {
             let id = String(argv[0]),
             let api = shareAPIs[id]
             else {
-                return FreArgError(message: "shareAPI_canShare").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         return api.canShare.toFREObject()
     }

@@ -44,13 +44,7 @@ public extension FreObjectSwift {
 
 public extension Array where Element == SharePhoto {
     init?(_ freObject: FREObject?) {
-        self.init()
-        guard let rv = freObject else { return }
-        let array = FREArray(rv)
-        for fre in array {
-            if let v = SharePhoto(fre) {
-                self.append(v)
-            }
-        }
+        guard let rv = freObject else { return nil }
+        self = FREArray(rv).compactMap { SharePhoto($0) }
     }
 }

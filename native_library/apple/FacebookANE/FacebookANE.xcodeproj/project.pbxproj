@@ -10,7 +10,7 @@
 		90382C322396A94E00A2F89D /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 90382C312396A94E00A2F89D /* FacebookCore */; };
 		90382C342396A94E00A2F89D /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 90382C332396A94E00A2F89D /* FacebookLogin */; };
 		90382C362396A94E00A2F89D /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 90382C352396A94E00A2F89D /* FacebookShare */; };
-		90382C392396C69B00A2F89D /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 90382C382396C69B00A2F89D /* SwiftyJSON */; };
+		90382C392396C69B00A2F89D /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 90382C382396C69B00A2F89D /* SwiftyJSON */; };
 		9051961422F7962800D51F08 /* FreSharePhotoContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9051961322F7962800D51F08 /* FreSharePhotoContent.swift */; platformFilter = ios; };
 		9051961622F7964700D51F08 /* FreShareVideoContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9051961522F7964700D51F08 /* FreShareVideoContent.swift */; platformFilter = ios; };
 		9051961822F7974B00D51F08 /* FreShareVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9051961722F7974B00D51F08 /* FreShareVideo.swift */; platformFilter = ios; };
