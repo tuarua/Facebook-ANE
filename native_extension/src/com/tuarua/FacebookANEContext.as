@@ -27,7 +27,6 @@ public class FacebookANEContext {
     internal static const NAME:String = "FacebookANE";
     internal static const TRACE:String = "TRACE";
     private static var _context:ExtensionContext;
-    private static var _isDisposed:Boolean;
     private static var argsAsJSON:Object;
     public static var callbacks:Dictionary = new Dictionary();
 
@@ -49,9 +48,8 @@ public class FacebookANEContext {
             try {
                 _context = ExtensionContext.createExtensionContext("com.tuarua." + NAME, null);
                 _context.addEventListener(StatusEvent.STATUS, gotEvent);
-                _isDisposed = false;
             } catch (e:Error) {
-                throw new Error("ANE " + NAME + " not created properly.  Future calls will fail.");
+                throw new Error("ANE " + NAME + " not created properly. Future calls will fail.");
             }
         }
         return _context;
@@ -114,15 +112,10 @@ public class FacebookANEContext {
 
     public static function dispose():void {
         if (_context == null) return;
-        _isDisposed = true;
         trace("[" + NAME + "] Unloading ANE...");
         _context.removeEventListener(StatusEvent.STATUS, gotEvent);
         _context.dispose();
         _context = null;
-    }
-
-    public static function get isDisposed():Boolean {
-        return _isDisposed;
     }
 }
 }
