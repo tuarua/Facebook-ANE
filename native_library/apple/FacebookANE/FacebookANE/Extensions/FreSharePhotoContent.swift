@@ -18,7 +18,6 @@ import FreSwift
 
 import FacebookCore
 import FacebookShare
-import FBSDKShareKit
 
 public extension SharePhotoContent {
     convenience init?(_ freObject: FREObject?) {

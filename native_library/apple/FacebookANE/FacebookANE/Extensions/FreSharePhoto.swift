@@ -18,7 +18,6 @@ import FreSwift
 
 import FacebookCore
 import FacebookShare
-import FBSDKShareKit
 
 public extension SharePhoto {
     convenience init?(_ freObject: FREObject?) {
@@ -33,11 +32,11 @@ public extension SharePhoto {
 }
 
 public extension FreObjectSwift {
-    public subscript(dynamicMember name: String) -> SharePhoto? {
+    subscript(dynamicMember name: String) -> SharePhoto? {
         get { return SharePhoto(rawValue?[name]) }
         set { rawValue?[name] = nil }
     }
-    public subscript(dynamicMember name: String) -> [SharePhoto] {
+    subscript(dynamicMember name: String) -> [SharePhoto] {
         get { return [SharePhoto](rawValue?[name]) ?? [] }
         set { rawValue?[name] = nil }
     }
@@ -45,13 +44,7 @@ public extension FreObjectSwift {
 
 public extension Array where Element == SharePhoto {
     init?(_ freObject: FREObject?) {
-        self.init()
-        guard let rv = freObject else { return }
-        let array = FREArray(rv)
-        for fre in array {
-            if let v = SharePhoto(fre) {
-                self.append(v)
-            }
-        }
+        guard let rv = freObject else { return nil }
+        self = FREArray(rv).compactMap { SharePhoto($0) }
     }
 }

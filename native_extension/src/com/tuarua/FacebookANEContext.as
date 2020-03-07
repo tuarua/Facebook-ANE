@@ -27,9 +27,8 @@ public class FacebookANEContext {
     internal static const NAME:String = "FacebookANE";
     internal static const TRACE:String = "TRACE";
     private static var _context:ExtensionContext;
-    private static var _isDisposed:Boolean;
     private static var argsAsJSON:Object;
-    public static var closures:Dictionary = new Dictionary();
+    public static var callbacks:Dictionary = new Dictionary();
 
     private static const ON_TOKEN_REFRESH:String = "FacebookEvent.OnTokenRefresh";
     private static const ON_TOKEN_REFRESH_FAILED:String = "FacebookEvent.OnTokenRefreshFailed";
@@ -49,96 +48,74 @@ public class FacebookANEContext {
             try {
                 _context = ExtensionContext.createExtensionContext("com.tuarua." + NAME, null);
                 _context.addEventListener(StatusEvent.STATUS, gotEvent);
-                _isDisposed = false;
             } catch (e:Error) {
-                throw new Error("ANE " + NAME + " not created properly.  Future calls will fail.");
+                throw new Error("ANE " + NAME + " not created properly. Future calls will fail.");
             }
         }
         return _context;
     }
 
-    public static function createEventId(listener:Function):String {
-        var eventId:String;
+    public static function createCallback(listener:Function):String {
+        var id:String;
         if (listener != null) {
-            eventId = context.call("createGUID") as String;
-            closures[eventId] = listener;
+            id = context.call("createGUID") as String;
+            callbacks[id] = listener;
         }
-        return eventId;
+        return id;
+    }
+
+    private static function callCallback(callbackId:String, ... args):void {
+        var callback:Function = callbacks[callbackId];
+        if (callback == null) return;
+        callback.apply(null, args);
+        delete callbacks[callbackId];
     }
 
     private static function gotEvent(event:StatusEvent):void {
-        var closure:Function;
-        // trace(event.code);
         switch (event.level) {
             case TRACE:
                 trace("[" + NAME + "]", event.code);
                 break;
             case ON_TOKEN_REFRESH:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null, new AccessToken(argsAsJSON.data));
-                delete closures[argsAsJSON.eventId];
+                callCallback(argsAsJSON.callbackId, new AccessToken(argsAsJSON.data));
                 break;
             case ON_CURRENT_ACCESS_TOKEN_CHANGED:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null, new AccessToken(argsAsJSON.data.oldToken),
+                callCallback(argsAsJSON.callbackId, new AccessToken(argsAsJSON.data.oldToken),
                         new AccessToken(argsAsJSON.data.newToken));
-                delete closures[argsAsJSON.eventId];
                 break;
             case ON_TOKEN_REFRESH_FAILED:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null, new FacebookError(argsAsJSON.data.message));
-                delete closures[argsAsJSON.eventId];
+                callCallback(argsAsJSON.callbackId, new FacebookError(argsAsJSON.data.message));
                 break;
             case ON_LOGIN_CANCEL:
             case ON_SHARE_CANCEL:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null);
-                delete closures[argsAsJSON.eventId];
+                callCallback(argsAsJSON.callbackId);
                 break;
             case ON_LOGIN_ERROR:
             case ON_SHARE_ERROR:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null, new FacebookError(argsAsJSON.data.message));
-                delete closures[argsAsJSON.eventId];
+                callCallback(argsAsJSON.callbackId, new FacebookError(argsAsJSON.data.message));
                 break;
             case ON_LOGIN_SUCCESS:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null, new LoginResult(argsAsJSON.data));
-                delete closures[argsAsJSON.eventId];
+                callCallback(argsAsJSON.callbackId, new LoginResult(argsAsJSON.data));
                 break;
             case ON_SHARE_SUCCESS:
                 argsAsJSON = JSON.parse(event.code);
-                closure = closures[argsAsJSON.eventId];
-                if (closure == null) return;
-                closure.call(null, argsAsJSON.data.postId);
-                delete closures[argsAsJSON.eventId];
+                callCallback(argsAsJSON.callbackId, argsAsJSON.data.postId);
                 break;
         }
     }
 
     public static function dispose():void {
         if (_context == null) return;
-        _isDisposed = true;
         trace("[" + NAME + "] Unloading ANE...");
         _context.removeEventListener(StatusEvent.STATUS, gotEvent);
         _context.dispose();
         _context = null;
-    }
-
-    public static function get isDisposed():Boolean {
-        return _isDisposed;
     }
 }
 }

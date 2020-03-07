@@ -14,9 +14,7 @@
  */
 import Foundation
 import FreSwift
-
 import FacebookCore
-import FBSDKCoreKit
 
 extension SwiftController: FreSwiftMainController {
     @objc public func getFunctions(prefix: String) -> [String] {

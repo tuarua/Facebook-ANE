@@ -22,11 +22,10 @@ PS get_android_dependencies.ps1
 <extensions>
 <extensionID>com.tuarua.frekotlin</extensionID>
 <extensionID>com.google.code.gson.gson</extensionID>
-<extensionID>com.android.support.support-v4</extensionID>
-<extensionID>android.arch.lifecycle.runtime</extensionID>
-<extensionID>com.android.support.appcompat-v7</extensionID>
-<extensionID>com.android.support.cardview-v7</extensionID>
-<extensionID>com.android.support.customtabs</extensionID>
+<extensionID>androidx.legacy.legacy-support-v4</extensionID>
+<extensionID>androidx.appcompat.appcompat</extensionID>
+<extensionID>androidx.cardview.cardview</extensionID>
+<extensionID>androidx.browser.browser</extensionID>
 <extensionID>com.parse.bolts.bolts-android</extensionID>
 <extensionID>com.facebook.android.facebook-android-sdk</extensionID>
 <extensionID>com.tuarua.FacebookANE</extensionID>
@@ -56,9 +55,6 @@ You will also need to include the following in your app manifest. Update accordi
     <provider android:authorities="com.facebook.app.FacebookContentProvider[FACEBOOK_APP_ID]" android:name="com.facebook.FacebookContentProvider" android:exported="true" />
 </application>
 ```
-
-#### AIR 32 & 33
-This ANE is built against AIR 33 SDK. If you wish to use with AIR 32 you will need to replace dx.jar in lib/android/bin/ with [this one](https://github.com/tuarua/Android-ANE-Dependencies/blob/master/AIR32_patch/lib/android/bin/dx.jar?raw=true)
 
 -------------
 
@@ -111,21 +107,17 @@ You will also need to include the following in your app manifest. Update accordi
 ]]></InfoAdditions>
 ```
 
-#### AIR 32 & 33
-You should use AIR 32 for iOS builds
-
 ### Prerequisites
 
 You will need:
 
 - IntelliJ IDEA
-- AIR 32 or greater
-- Xcode 10.1
-- [wget](http://rudix.org/packages/wget.html) on macOS
+- AIR 33.0.2.338+
+- Xcode 11.3
+- wget on macOS via `brew install wget`
 - Powershell on Windows
 - Android Studio 3 if you wish to edit the Android source
 
 ### References
 * [https://developers.facebook.com/docs/facebook-login/android]
-* [https://developers.facebook.com/docs/swift/getting-started] 
-* [https://github.com/facebook/facebook-swift-sdk]
+* [https://developers.facebook.com/docs/swift] 

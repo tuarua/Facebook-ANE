@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="com.facebook.android.facebook-android-sdk-5.13.0" type="flex">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/android_dependencies/com.facebook.android.facebook-android-sdk-5.13.0.ane!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -31,7 +31,7 @@ public class FacebookSdk {
     public static function init(applicationId:String, onCurrentAccessTokenChanged:Function = null):void {
         if (FacebookANEContext.context) {
             var ret:* = FacebookANEContext.context.call("init", applicationId,
-                    FacebookANEContext.createEventId(onCurrentAccessTokenChanged),
+                    FacebookANEContext.createCallback(onCurrentAccessTokenChanged),
                     _isAdvertiserIDCollectionEnabled,
                     _isAutoLogAppEventsEnabled);
             if (ret is ANEError) throw ret as ANEError;
@@ -162,17 +162,17 @@ public class FacebookSdk {
     }
 
     public static function set onShareSuccess(value:Function):void {
-        var ret:* = FacebookANEContext.context.call("onShareSuccess", FacebookANEContext.createEventId(value));
+        var ret:* = FacebookANEContext.context.call("onShareSuccess", FacebookANEContext.createCallback(value));
         if (ret is ANEError) throw ret as ANEError;
     }
 
     public static function set onShareCancel(value:Function):void {
-        var ret:* = FacebookANEContext.context.call("onShareCancel", FacebookANEContext.createEventId(value));
+        var ret:* = FacebookANEContext.context.call("onShareCancel", FacebookANEContext.createCallback(value));
         if (ret is ANEError) throw ret as ANEError;
     }
 
     public static function set onShareError(value:Function):void {
-        var ret:* = FacebookANEContext.context.call("onShareError", FacebookANEContext.createEventId(value));
+        var ret:* = FacebookANEContext.context.call("onShareError", FacebookANEContext.createCallback(value));
         if (ret is ANEError) throw ret as ANEError;
     }
 

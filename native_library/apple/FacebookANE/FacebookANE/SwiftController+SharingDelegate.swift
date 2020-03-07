@@ -12,32 +12,33 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+
 import Foundation
 import FreSwift
 import FacebookShare
-import FBSDKShareKit
+import SwiftyJSON
 
 public extension SwiftController {
-    public func sharer(_ sharer: Sharing, didCompleteWithResults results: [String: Any]) {
-        guard let onSuccessEventId = self.onShareSuccessEventId else { return }
+    func sharer(_ sharer: Sharing, didCompleteWithResults results: [String: Any]) {
+        guard let onSuccessCallbackId = self.onShareSuccessCallbackId else { return }
         var props = [String: Any]()
-        props["eventId"] = onSuccessEventId
+        props["callbackId"] = onSuccessCallbackId
         props["data"] = ["postId": ""]
         self.dispatchEvent(name: FacebookEvent.ON_SHARE_SUCCESS, value: JSON(props).description)
     }
     
-    public func sharer(_ sharer: Sharing, didFailWithError error: Error) {
-        guard let onErrorEventId  = self.onShareErrorEventId  else { return }
+    func sharer(_ sharer: Sharing, didFailWithError error: Error) {
+        guard let onErrorCallbackId  = self.onShareErrorCallbackId  else { return }
         var props = [String: Any]()
-        props["eventId"] = onErrorEventId
+        props["callbackId"] = onErrorCallbackId
         props["data"] = ["message": error.localizedDescription]
         self.dispatchEvent(name: FacebookEvent.ON_SHARE_ERROR, value: JSON(props).description)  
     }
     
-    public func sharerDidCancel(_ sharer: Sharing) {
-        guard let onCancelEventId = self.onShareCancelEventId else { return }
+    func sharerDidCancel(_ sharer: Sharing) {
+        guard let onCancelCallbackId = self.onShareCancelCallbackId else { return }
         var props = [String: Any]()
-        props["eventId"] = onCancelEventId
+        props["callbackId"] = onCancelCallbackId
         self.dispatchEvent(name: FacebookEvent.ON_SHARE_CANCEL, value: JSON(props).description)
     }
 }

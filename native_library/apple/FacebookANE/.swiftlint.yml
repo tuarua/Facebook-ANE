@@ -14,5 +14,4 @@ type_body_length:
  - 1000 # warning
 
 excluded:
-- FacebookANE/SwiftyJSON/
 - Carthage/

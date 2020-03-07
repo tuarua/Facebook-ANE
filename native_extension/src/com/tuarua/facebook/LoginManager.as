@@ -25,9 +25,9 @@ public class LoginManager {
     public function login(permissions:Vector.<String>, onSuccess:Function, onCancel:Function, onError:Function,
                           withPublish:Boolean = false):void {
         var ret:* = FacebookANEContext.context.call("login", permissions, withPublish,
-                FacebookANEContext.createEventId(onSuccess),
-                FacebookANEContext.createEventId(onCancel),
-                FacebookANEContext.createEventId(onError));
+                FacebookANEContext.createCallback(onSuccess),
+                FacebookANEContext.createCallback(onCancel),
+                FacebookANEContext.createCallback(onError));
         if (ret is ANEError) throw ret as ANEError;
     }
 

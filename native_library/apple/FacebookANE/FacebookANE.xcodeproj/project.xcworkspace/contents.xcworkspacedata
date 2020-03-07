@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/eoinlandy/flash/Facebook-ANE/native_library/apple/FacebookANE/FacebookANE.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

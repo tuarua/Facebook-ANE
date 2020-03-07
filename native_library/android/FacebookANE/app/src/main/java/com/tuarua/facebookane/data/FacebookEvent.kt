@@ -15,7 +15,7 @@
  */
 package com.tuarua.facebookane.data
 
-data class FacebookEvent(val eventId:String?, val data: Map<String, Any?>? = null) {
+data class FacebookEvent(val callbackId:String?, val data: Map<String, Any?>? = null) {
     companion object {
         const val ON_LOGIN_SUCCESS = "FacebookEvent.OnLoginSuccess"
         const val ON_LOGIN_CANCEL = "FacebookEvent.OnLoginCancel"

@@ -4,7 +4,7 @@
     <id>com.tuarua.facebook.example</id>
     <filename>FacebookANESample</filename>
     <name>FacebookANESample</name>
-    <versionNumber>1.0.0</versionNumber>
+    <versionNumber>1.2.0</versionNumber>
 
     <initialWindow>
         <content>[This value will be overwritten by Flash Builder in the output app.xml]</content>
@@ -21,7 +21,7 @@
 			<manifest android:installLocation="auto">
 			    <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="28" />
 			    <uses-permission android:name="android.permission.INTERNET"/>
-			    <application>
+			    <application android:enabled="true">
                     <intent-filter>
                         <action android:name="android.intent.action.MAIN" />
                         <category android:name="android.intent.category.LAUNCHER" />
@@ -36,6 +36,7 @@
                             <data android:scheme="fb2861959030739282" />
                         </intent-filter>
                     </activity>
+                    <meta-data android:name="android.max_aspect" android:value="2.1" />
                     <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled" android:value="true"/>
                     <meta-data android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled" android:value="false"/>
                     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ 2861959030739282"/>
@@ -58,11 +59,10 @@
     <extensions>
         <extensionID>com.tuarua.frekotlin</extensionID>
         <extensionID>com.google.code.gson.gson</extensionID>
-        <extensionID>com.android.support.support-v4</extensionID>
-        <extensionID>android.arch.lifecycle.runtime</extensionID>
-        <extensionID>com.android.support.appcompat-v7</extensionID>
-        <extensionID>com.android.support.cardview-v7</extensionID>
-        <extensionID>com.android.support.customtabs</extensionID>
+        <extensionID>androidx.legacy.legacy-support-v4</extensionID>
+        <extensionID>androidx.appcompat.appcompat</extensionID>
+        <extensionID>androidx.cardview.cardview</extensionID>
+        <extensionID>androidx.browser.browser</extensionID>
         <extensionID>com.parse.bolts.bolts-android</extensionID>
         <extensionID>com.facebook.android.facebook-android-sdk</extensionID>
         <extensionID>com.tuarua.FacebookANE</extensionID>

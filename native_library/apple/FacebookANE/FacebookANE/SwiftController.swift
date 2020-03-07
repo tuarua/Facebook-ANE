@@ -18,18 +18,17 @@ import FreSwift
 
 import FacebookCore
 import FacebookLogin
-import FBSDKLoginKit
 import FacebookShare
-import FBSDKShareKit
+import SwiftyJSON
 
 public class SwiftController: NSObject, SharingDelegate {
     public static var TAG = "SwiftController"
     public var context: FreContextSwift!
     public var functionsToSet: FREFunctionMap = [:]
     internal var appDidFinishLaunchingNotification: Notification?
-    internal var onShareSuccessEventId: String?
-    internal var onShareCancelEventId: String?
-    internal var onShareErrorEventId: String?
+    internal var onShareSuccessCallbackId: String?
+    internal var onShareCancelCallbackId: String?
+    internal var onShareErrorCallbackId: String?
     private var shareDialogs = [String: ShareDialog]()
     private var messageDialogs = [String: MessageDialog]()
     private var shareAPIs = [String: ShareAPI]()
@@ -46,7 +45,7 @@ public class SwiftController: NSObject, SharingDelegate {
             let isAdvertiserIDCollectionEnabled = Bool(argv[2]),
             let isAutoLogAppEventsEnabled = Bool(argv[3])
             else {
-                return FreArgError(message: "initController").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         if let appDidFinishLaunchingNotification = appDidFinishLaunchingNotification,
             let application = appDidFinishLaunchingNotification.object as? UIApplication {
@@ -73,7 +72,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let behaviour = Int(argv[0])
             else {
-                return FreArgError(message: "addLoggingBehavior").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         Settings.enableLoggingBehavior(loggingBehaviorFromInt(behaviour))
         return nil
@@ -83,7 +82,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let behaviour = Int(argv[0])
             else {
-                return FreArgError(message: "removeLoggingBehavior").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         Settings.disableLoggingBehavior(loggingBehaviorFromInt(behaviour))
         return nil
@@ -100,7 +99,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let behaviour = Int(argv[0])
             else {
-                return FreArgError(message: "isLoggingBehaviorEnabled").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         for loginBehaviour in Settings.loggingBehaviors {
             if loggingBehaviorFromInt(behaviour) == loginBehaviour {
@@ -174,22 +173,22 @@ public class SwiftController: NSObject, SharingDelegate {
     func login(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard argc > 4,
             let permissions = [String](argv[0]),
-            let onSuccessEventId = String(argv[2]),
-            let onCancelEventId = String(argv[3]),
-            let onErrorEventId = String(argv[4])
+            let onSuccessCallbackId = String(argv[2]),
+            let onCancelCallbackId = String(argv[3]),
+            let onErrorCallbackId = String(argv[4])
             else {
-                return FreArgError(message: "login").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         let loginManager = LoginManager()
         loginManager.logIn(permissions: permissions.compactMap { Permission(stringLiteral: $0) },
                            viewController: UIApplication.shared.keyWindow?.rootViewController) { loginResult in
             switch loginResult {
             case .failed(let error):
-                self.dispatchLoginEvent(name: FacebookEvent.ON_LOGIN_ERROR, eventId: onErrorEventId, error: error, data: nil)
+                self.dispatchLoginEvent(name: FacebookEvent.ON_LOGIN_ERROR, callbackId: onErrorCallbackId, error: error, data: nil)
             case .cancelled:
-                self.dispatchLoginEvent(name: FacebookEvent.ON_LOGIN_CANCEL, eventId: onCancelEventId, error: nil, data: nil)
+                self.dispatchLoginEvent(name: FacebookEvent.ON_LOGIN_CANCEL, callbackId: onCancelCallbackId, error: nil, data: nil)
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                self.dispatchLoginEvent(name: FacebookEvent.ON_LOGIN_SUCCESS, eventId: onSuccessEventId, error: nil,
+                self.dispatchLoginEvent(name: FacebookEvent.ON_LOGIN_SUCCESS, callbackId: onSuccessCallbackId, error: nil,
                                         data: ["accessToken": accessToken.toDictionary(),
                                                "recentlyGrantedPermissions": grantedPermissions.compactMap { $0.name },
                                                "recentlyDeniedPermissions": declinedPermissions.compactMap { $0.name }])
@@ -198,9 +197,9 @@ public class SwiftController: NSObject, SharingDelegate {
         return nil
     }
     
-    func dispatchLoginEvent(name: String, eventId: String, error: Error?, data: [String: Any]?) {
+    func dispatchLoginEvent(name: String, callbackId: String, error: Error?, data: [String: Any]?) {
         var props = [String: Any]()
-        props["eventId"] = eventId
+        props["callbackId"] = callbackId
         if let err = error {
             props["data"] = ["message": err.localizedDescription]
         }
@@ -235,6 +234,8 @@ public class SwiftController: NSObject, SharingDelegate {
             return 2.toFREObject()
         case .everyone:
             return 3.toFREObject()
+        @unknown default:
+            return 1.toFREObject()
         }
     }
     
@@ -242,7 +243,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let defaultAudience = UInt(argv[0])
             else {
-                return FreArgError(message: "setDefaultAudience").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         let loginManager = LoginManager()
         switch defaultAudience {
@@ -269,19 +270,19 @@ public class SwiftController: NSObject, SharingDelegate {
     
     func refreshCurrentAccessTokenAsync(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
         guard argc > 1,
-            let onTokenRefreshedEventId = String(argv[0]),
-            let onTokenRefreshFailedEventId = String(argv[1])
+            let onTokenRefreshedCallbackId = String(argv[0]),
+            let onTokenRefreshFailedCallbackId = String(argv[1])
             else {
-                return FreArgError(message: "setDefaultAudience").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         AccessToken.refreshCurrentAccessToken { _, _, error in
             var props = [String: Any]()
             if let err = error {
-                props["eventId"] = onTokenRefreshFailedEventId
+                props["callbackId"] = onTokenRefreshFailedCallbackId
                 props["data"] = ["message": err.localizedDescription]
                 self.dispatchEvent(name: FacebookEvent.ON_TOKEN_REFRESH_FAILED, value: JSON(props).description)
             } else {
-                props["eventId"] = onTokenRefreshedEventId
+                props["callbackId"] = onTokenRefreshedCallbackId
                 if let accessToken = AccessToken.current {
                     props["data"] = accessToken.toDictionary()
                 }
@@ -328,7 +329,7 @@ public class SwiftController: NSObject, SharingDelegate {
             let content = createSharingContent(argv[0]),
             let mode = UInt(argv[1])
             else {
-                return FreArgError(message: "shareDialog_create").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         let id = UUID().uuidString
         shareDialogs[id] = ShareDialog(fromViewController: UIApplication.shared.keyWindow?.rootViewController,
@@ -342,7 +343,7 @@ public class SwiftController: NSObject, SharingDelegate {
             let id = String(argv[0]),
             let dialog = shareDialogs[id]
             else {
-                return FreArgError(message: "shareDialog_show").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         dialog.show()
         return nil
@@ -353,7 +354,7 @@ public class SwiftController: NSObject, SharingDelegate {
             let id = String(argv[0]),
             let dialog = shareDialogs[id]
             else {
-                return FreArgError(message: "shareDialog_canShow").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         return dialog.canShow.toFREObject()
     }
@@ -362,8 +363,9 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let content = createSharingContent(argv[0])
             else {
-                return FreArgError(message: "messageDialog_create").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
+        warning("Starting August 15, 2019, updated versions of the Messenger app will no longer support Share to Messenger SDK.")
         let id = UUID().uuidString
         messageDialogs[id] = MessageDialog(content: content, delegate: self)
         return id.toFREObject()
@@ -373,7 +375,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let id = String(argv[0])
             else {
-                return FreArgError(message: "messageDialog_show").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         messageDialogs[id]?.show()
         return nil
@@ -383,7 +385,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let id = String(argv[0])
             else {
-                return FreArgError(message: "messageDialog_canShow").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         return messageDialogs[id]?.canShow.toFREObject()
     }
@@ -392,7 +394,7 @@ public class SwiftController: NSObject, SharingDelegate {
         guard argc > 0,
             let content = createSharingContent(argv[0])
             else {
-                return FreArgError(message: "shareAPI_create").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         let id = UUID().uuidString
         shareAPIs[id] = ShareAPI(content: content, delegate: self)
@@ -404,7 +406,7 @@ public class SwiftController: NSObject, SharingDelegate {
             let id = String(argv[0]),
             let api = shareAPIs[id]
             else {
-                return FreArgError(message: "shareAPI_share").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         api.share()
         return nil
@@ -415,23 +417,23 @@ public class SwiftController: NSObject, SharingDelegate {
             let id = String(argv[0]),
             let api = shareAPIs[id]
             else {
-                return FreArgError(message: "shareAPI_canShare").getError(#file, #line, #column)
+                return FreArgError().getError()
         }
         return api.canShare.toFREObject()
     }
     
     func onShareSuccess(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        onShareSuccessEventId = String(argv[0])
+        onShareSuccessCallbackId = String(argv[0])
         return nil
     }
     
     func onShareCancel(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        onShareCancelEventId = String(argv[0])
+        onShareCancelCallbackId = String(argv[0])
         return nil
     }
     
     func onShareError(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        onShareErrorEventId = String(argv[0])
+        onShareErrorCallbackId = String(argv[0])
         return nil
     }
     
