@@ -56,9 +56,6 @@ You will also need to include the following in your app manifest. Update accordi
 </application>
 ```
 
-#### AIR 32 & 33
-This ANE is built against AIR 33 SDK. If you wish to use with AIR 32 you will need to replace dx.jar in lib/android/bin/ with [this one](https://github.com/tuarua/Android-ANE-Dependencies/blob/master/AIR32_patch/lib/android/bin/dx.jar?raw=true)
-
 -------------
 
 ## iOS
@@ -109,9 +106,6 @@ You will also need to include the following in your app manifest. Update accordi
 <true/> <!-- or false -->
 ]]></InfoAdditions>
 ```
-
-#### AIR 32 & 33
-You should use AIR 32 for iOS builds
 
 ### Prerequisites
 
