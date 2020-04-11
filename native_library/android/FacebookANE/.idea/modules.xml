@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FacebookANE.iml" filepath="$PROJECT_DIR$/FacebookANE.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FacebookANE.iml" filepath="$PROJECT_DIR$/FacebookANE.iml" group="FacebookANE" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="FacebookANE/app" />
     </modules>
   </component>
 </project>
