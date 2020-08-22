@@ -1,5 +1,5 @@
-$AneVersion = "1.3.0"
-$FreKotlinVersion = "1.10.0"
+$AneVersion = "1.4.0"
+$FreKotlinVersion = "1.40.0"
 $GsonVersion = "2.8.6"
 $SupportV4Version = "1.0.0"
 $BoltsVersion = "1.4.0"
