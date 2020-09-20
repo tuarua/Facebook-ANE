@@ -1,0 +1,16 @@
+{
+  "name": "facebook-sample",
+  "version": "1.4.0",
+  "appDescriptor": "src/Main-app.xml",
+  "variables": {
+    "facebookAppId": "000000000000000"
+  },
+  "airDotPrefix": true,
+  "appleTeamId": "XXXXXX",
+  "repository": {
+    "url": "https://tuarua.github.io/air/air_packages.json"
+  },
+  "dependencies": {
+    "com.tuarua.FacebookANE": "1.4.0"
+  }
+}

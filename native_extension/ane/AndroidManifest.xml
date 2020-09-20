@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-sdk android:minSdkVersion="19"/>
+    <application>
+        <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled" android:value="true"/>
+        <meta-data android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled" android:value="false"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ #{facebookAppId}"/>
+        <provider android:authorities="com.facebook.app.FacebookContentProvider#{facebookAppId}" android:name="com.facebook.FacebookContentProvider" android:exported="true" />
+    </application>
+</manifest>
