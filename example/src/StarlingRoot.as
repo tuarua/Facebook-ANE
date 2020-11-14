@@ -44,7 +44,7 @@ public class StarlingRoot extends Sprite {
 
     public function start():void {
         trace("FacebookSdk.sdkVersion", FacebookSdk.sdkVersion);
-        FacebookSdk.init("2861959030739282", onCurrentAccessTokenChanged);
+        FacebookSdk.init("000000000000000", onCurrentAccessTokenChanged);
         FacebookSdk.isDebugEnabled = true;
         FacebookSdk.isAutoLogAppEventsEnabled = true;
         trace("FacebookSdk.isInitialized:", FacebookSdk.isInitialized);

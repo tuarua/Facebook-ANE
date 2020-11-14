@@ -1,6 +1,6 @@
 {
   "name": "facebook-sample",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "appDescriptor": "src/Main-app.xml",
   "variables": {
     "facebookAppId": "000000000000000"
@@ -11,6 +11,6 @@
     "url": "https://tuarua.github.io/air/air_packages.json"
   },
   "dependencies": {
-    "com.tuarua.FacebookANE": "1.4.0"
+    "com.tuarua.FacebookANE": "1.5.0"
   }
 }
