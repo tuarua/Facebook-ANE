@@ -31,7 +31,6 @@ public class SwiftController: NSObject, SharingDelegate {
     internal var onShareErrorCallbackId: String?
     private var shareDialogs = [String: ShareDialog]()
     private var messageDialogs = [String: MessageDialog]()
-    private var shareAPIs = [String: ShareAPI]()
     
     // MARK: - Init
     
@@ -180,6 +179,7 @@ public class SwiftController: NSObject, SharingDelegate {
                 return FreArgError().getError()
         }
         let loginManager = LoginManager()
+
         loginManager.logIn(permissions: permissions.compactMap { Permission(stringLiteral: $0) },
                            viewController: UIApplication.shared.keyWindow?.rootViewController) { loginResult in
             switch loginResult {
@@ -318,6 +318,8 @@ public class SwiftController: NSObject, SharingDelegate {
             return SharePhotoContent(freObject)
         case "ShareVideoContent":
             return ShareVideoContent(freObject)
+        case "ShareMediaContent":
+            return ShareMediaContent(freObject)
         default:
             break
         }
@@ -391,35 +393,18 @@ public class SwiftController: NSObject, SharingDelegate {
     }
     
     func shareAPI_create(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        guard argc > 0,
-            let content = createSharingContent(argv[0])
-            else {
-                return FreArgError().getError()
-        }
-        let id = UUID().uuidString
-        shareAPIs[id] = ShareAPI(content: content, delegate: self)
-        return id.toFREObject()
+        warning("ShareAPI is no longer available in the iOS version")
+        return nil
     }
     
     func shareAPI_share(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        guard argc > 0,
-            let id = String(argv[0]),
-            let api = shareAPIs[id]
-            else {
-                return FreArgError().getError()
-        }
-        api.share()
+        warning("ShareAPI is no longer available in the iOS version")
         return nil
     }
     
     func shareAPI_canShare(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {
-        guard argc > 0,
-            let id = String(argv[0]),
-            let api = shareAPIs[id]
-            else {
-                return FreArgError().getError()
-        }
-        return api.canShare.toFREObject()
+        warning("ShareAPI is no longer available in the iOS version")
+        return nil
     }
     
     func onShareSuccess(ctx: FREContext, argc: FREArgc, argv: FREArgv) -> FREObject? {

@@ -1,5 +1,5 @@
 package com.tuarua.facebook {
-public class ShareVideo {
+public class ShareVideo implements ShareMedia {
     private var _videoUrl:String;
     private var _previewPhoto:SharePhoto;
 

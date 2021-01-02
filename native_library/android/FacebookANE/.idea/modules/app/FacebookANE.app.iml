@@ -31,33 +31,19 @@
           <option name="additionalArguments" value="-Xallow-no-source-files" />
         </compilerSettings>
         <compilerArguments>
-          <option name="destination" value="$MODULE_DIR$/../../../app/build/tmp/kotlin-classes/debug" />
-          <option name="classpath" value="$MODULE_DIR$/../../../app/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions-runtime/1.4.10/13d16dda9af8ec814d8a046e71924c0bc4a77ea6/kotlin-android-extensions-runtime-1.4.10.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.4.10/ea29e063d2bbe695be13e9d044dcfb0c7add398e/kotlin-stdlib-1.4.10.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.4.10/6229be3465805c99db1142ad75e6c6ddeac0b04c/kotlin-stdlib-common-1.4.10.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.6/9180733b7df8542621dc12e21e87557e8c99b8cb/gson-2.8.6.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/6940f84fe9fc4c8af67fa1193a829156/FreKotlin-1.41.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/6410b5e79d9b3c352dbf27c0e8b19b81/facebook-android-sdk-5.13.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/066c3145552b7eeee66e4b9ac4f5e2c7/facebook-share-5.13.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/fe954d11469d7db48d9c777b701dc340/facebook-login-5.13.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/6eeb54d02962c5106c2fc80f022e2b43/facebook-common-5.13.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/22ab9622c5a06aff266210a376047acd/facebook-places-5.13.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/f69884d106877e1614ddc37a4069a0e1/facebook-applinks-5.13.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/dc8864fd1ebbe7d76d967b0f656580f9/facebook-messenger-5.13.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/e62c09df4f642fa13b4e6b84fd615c55/facebook-core-5.13.0-api.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.4.0/cc174c559b5177982887bf6e1b76003aebad9516/bolts-android-1.4.0.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/593135d6a0a71d2790da1fe483dfcf0a/appcompat-v7-27.0.2-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/7aac1d0cff24a1eba084f16dcdb37eb1/support-v4-27.0.2-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/4c38cdbe187ea6795df7ff184a40f2f2/support-fragment-27.0.2-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/aef4ca6c977c01cd4858e00c200a75f3/support-core-utils-27.0.2-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/98944a3a715c8e78f48c24ffd2c84916/cardview-v7-27.0.2-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/8ad721f9c0cffa4835d1fbeac5326f80/customtabs-27.0.2-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/0966ec4b200c0c52a5f2b4d452950250/animated-vector-drawable-27.0.2-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/1da433374e5c9b650e7da2fc6497367f/support-vector-drawable-27.0.2-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/0d1f6ff19d71c5d53770bdec137e5fb9/support-media-compat-27.0.2-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/2bce6c3dad3eff0b866327c7b13555bd/support-core-ui-27.0.2-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/c69cb716cd9d1533ea8af6248b38dd01/support-compat-27.0.2-api.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.0.2/b9ef4342c934a1a8b107506273dc8061662a322/support-annotations-27.0.2.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/ab0edd97467ce0e26b1b110426c12f0a/runtime-1.0.3-api.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.3/7d7f60c4783872861222166f6164215f8951c7b1/common-1.0.3.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.0.0/a2d487452376193fc8c103dd2b9bd5f2b1b44563/common-1.0.0.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.3.3/b640badcc97f18867c4dfd249ef8d20ec0204c07/core-3.3.3.jar:/Users/eoinlandy/Library/Android/sdk/platforms/android-29/android.jar:/Users/eoinlandy/Library/Android/sdk/build-tools/29.0.3/core-lambda-stubs.jar" />
+          <option name="destination" value="$MODULE_DIR$/../../../app/build/tmp/kotlin-classes/release" />
+          <option name="classpath" value="$MODULE_DIR$/../../../app/build/intermediates/compile_only_not_namespaced_r_class_jar/release/R.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/0f6862c8244c5150722c2102fb30cd6d/facebook-android-sdk-8.2.0-api.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.3.31/e652770b6416c6d85934086899ffed3eccd35813/kotlin-stdlib-jdk7-1.3.31.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.4.21/4a668382d7c38688d3490afde93b6a113ed46698/kotlin-stdlib-1.4.21.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.6/9180733b7df8542621dc12e21e87557e8c99b8cb/gson-2.8.6.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/ce9a57c16a11894f5684ed38220204cb/FreKotlin-1.42.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/e732681580b75258d0f399e6ea290cd1/facebook-gamingservices-8.2.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/3cc3012d5b3f91741856053b87e25da5/facebook-share-8.2.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/3f83edd870062bc6712a3c577d2e3a5a/facebook-login-8.2.0-api.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.4.21/7f48a062aa4b53215998780f7c245a4276828e1d/kotlin-stdlib-common-1.4.21.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/cec51c236ed27c216fffe56bae190f67/facebook-common-8.2.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/5848f83a559455afa03eefe037b48f22/facebook-applinks-8.2.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/06ce578bb3adea79f528843de011dc72/facebook-messenger-8.2.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/fd51503678fc6a445971f61692cd2432/facebook-core-8.2.0-api.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.4.0/cc174c559b5177982887bf6e1b76003aebad9516/bolts-android-1.4.0.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/9a259a1f8335217515ebc8c0e4b5d9c9/appcompat-1.1.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/8fa5a00bc0a7354143e344054d440ab1/legacy-support-v4-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/0334269ffa5461c3f247e443e7eafb0f/browser-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/796ca5b4798f55fa8ae7432e0c18494c/legacy-support-core-ui-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/ea5ff084a2415241be98f67940fc224b/legacy-support-core-utils-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/0a604a7cd77b737c5570583468ddd165/cardview-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/f389e21b71c499449566cca4c5136192/fragment-1.1.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/57194fabf7208482cab672695206ae62/appcompat-resources-1.1.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/a8423dd853828235086f1d28828f5532/drawerlayout-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/c6bebcbd16ccfb30f772992b6cc28d0a/loader-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/26e20563568ddfb5d9a88a967166f5b6/media-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/89e90a58c38688be976828b9c4ded781/viewpager-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/296e8b9e60424849cf9668f3e8419974/activity-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/e48940a821a702ccd034e41edbd2c6da/vectordrawable-animated-1.1.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/7074810aaca57a7f15ff52d4a4aaf427/vectordrawable-1.1.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/4b6bbdc7c8416530725b45da12ec7149/coordinatorlayout-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/e44a8caed84d3c3c77fb1f036a40434d/slidingpanelayout-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/cb282c94e4457b3201faa74791417dce/customview-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/37d9b36499dc230e1538266ed54f2310/swiperefreshlayout-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/026f735e15789e80abd8d2ecebe4bc70/asynclayoutinflater-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/36c99d709d16350d0c245ae59e30e6e4/core-1.1.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/075b04c3554f901684f816532f4fbfda/cursoradapter-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/3683272c2d8ae980b409f9e849957893/versionedparcelable-1.1.0-api.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/2e62c779e5aa5e4d77b2691b502e0c52/documentfile-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/43fd8019f6b6c65254837b2afa0cac02/localbroadcastmanager-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/f7fc97e6e75a36ff2f9bd9b8a2502686/print-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/cab62b0d59674e4f8bae52d8537d0f97/interpolator-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/f01f17b80ac1d63015287a8063d0d8c5/lifecycle-viewmodel-2.1.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/9d53641dbd863480822a87b493a7181d/lifecycle-livedata-2.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/b5f5b3c59b10dee5cad8c933e265c641/lifecycle-runtime-2.1.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/a779a780db150d07dfdafd191703c4d1/savedstate-1.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/cf025532d4d9ec70315bdf239bacd625/lifecycle-livedata-core-2.0.0-api.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/e3bdd840f8a1509b1d9f1bfa8e244dc0/core-runtime-2.0.0-api.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/b3152fc64428c9354344bd89848ecddc09b6f07e/core-common-2.1.0.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.1.0/c67e7807d9cd6c329b9d0218b2ec4e505dd340b7/lifecycle-common-2.1.0.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/androidx.annotation/annotation/1.1.0/e3a6fb2f40e3a3842e6b7472628ba4ce416ea4c8/annotation-1.1.0.jar:/Users/eoinlandy/.gradle/caches/transforms-2/files-2.1/a879e735ceed7b8f0374e8fe3dacdc2a/installreferrer-1.0-api.jar:/Users/eoinlandy/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.3.3/b640badcc97f18867c4dfd249ef8d20ec0204c07/core-3.3.3.jar:/Users/eoinlandy/Library/Android/sdk/platforms/android-29/android.jar:/Users/eoinlandy/Library/Android/sdk/build-tools/29.0.3/core-lambda-stubs.jar" />
           <option name="noStdlib" value="true" />
           <option name="noReflect" value="true" />
-          <option name="moduleName" value="app_debug" />
+          <option name="moduleName" value="app_release" />
           <option name="jvmTarget" value="1.8" />
           <option name="languageVersion" value="1.4" />
-          <option name="apiVersion" value="1.3" />
+          <option name="apiVersion" value="1.4" />
           <option name="pluginOptions">
-            <array>
-              <option value="plugin:org.jetbrains.kotlin.android:experimental=false" />
-              <option value="plugin:org.jetbrains.kotlin.android:enabled=true" />
-              <option value="plugin:org.jetbrains.kotlin.android:defaultCacheImplementation=hashMap" />
-            </array>
+            <array />
           </option>
           <option name="pluginClasspaths">
-            <array>
-              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.intellij.deps/trove4j/1.0.20181211/216c2e14b070f334479d800987affe4054cd563f/trove4j-1.0.20181211.jar" />
-              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions/1.4.10/acb62fa5f5ddd0ee4aa1f55e35fa803e114156c9/kotlin-android-extensions-1.4.10.jar" />
-              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-compiler-embeddable/1.4.10/38c4b99d5d5362debdd9302a866730379aa2328a/kotlin-compiler-embeddable-1.4.10.jar" />
-              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-daemon-embeddable/1.4.10/dbd67f42bed28043d17d7c860b06110a00a45970/kotlin-daemon-embeddable-1.4.10.jar" />
-              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.4.10/e2b3c6695eee6085e606d96d685396dce23a3a06/kotlin-reflect-1.4.10.jar" />
-              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-script-runtime/1.4.10/7c19d9c2001e016cd7664cebe9eea66fc04a7f4f/kotlin-script-runtime-1.4.10.jar" />
-              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.4.10/6229be3465805c99db1142ad75e6c6ddeac0b04c/kotlin-stdlib-common-1.4.10.jar" />
-              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.4.10/ea29e063d2bbe695be13e9d044dcfb0c7add398e/kotlin-stdlib-1.4.10.jar" />
-              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
-            </array>
+            <array />
           </option>
           <option name="errors">
             <ArgumentParseErrors />
@@ -80,38 +66,61 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 29 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.4.10" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.4.10" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.4.21" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.6" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.10" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.21" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" name="Gradle: com.parse.bolts:bolts-android:1.4.0" level="project" />
     <orderEntry type="library" name="Gradle: com.parse.bolts:bolts-applinks:1.4.0" level="project" />
     <orderEntry type="library" name="Gradle: com.parse.bolts:bolts-tasks:1.4.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:support-annotations:27.0.2" level="project" />
-    <orderEntry type="library" name="Gradle: android.arch.lifecycle:common:1.0.3" level="project" />
-    <orderEntry type="library" name="Gradle: android.arch.core:common:1.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.zxing:core:3.3.3" level="project" />
-    <orderEntry type="library" name="Gradle: com.tuarua:FreKotlin:1.41.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-android-sdk:5.13.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-share:5.13.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-login:5.13.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-common:5.13.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-places:5.13.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-applinks:5.13.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-messenger:5.13.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-core:5.13.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:appcompat-v7:27.0.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:support-v4:27.0.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:support-fragment:27.0.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:support-core-utils:27.0.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:cardview-v7:27.0.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:customtabs:27.0.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:animated-vector-drawable:27.0.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:support-vector-drawable:27.0.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:support-media-compat:27.0.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:support-core-ui:27.0.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:support-compat:27.0.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: android.arch.lifecycle:runtime:1.0.3@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-android-sdk:8.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.tuarua:FreKotlin:1.42.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-gamingservices:8.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-share:8.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-login:8.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-common:8.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-applinks:8.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-messenger:8.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-core:8.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-v4:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.browser:browser:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-core-ui:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-core-utils:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.cardview:cardview:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat-resources:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.drawerlayout:drawerlayout:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.loader:loader:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.media:media:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.viewpager:viewpager:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.activity:activity:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.vectordrawable:vectordrawable-animated:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.vectordrawable:vectordrawable:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.coordinatorlayout:coordinatorlayout:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.slidingpanelayout:slidingpanelayout:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.customview:customview:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.swiperefreshlayout:swiperefreshlayout:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.asynclayoutinflater:asynclayoutinflater:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.core:core:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.cursoradapter:cursoradapter:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.versionedparcelable:versionedparcelable:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.documentfile:documentfile:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.print:print:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.interpolator:interpolator:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata:2.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core:2.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.arch.core:core-runtime:2.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.installreferrer:installreferrer:1.0@aar" level="project" />
   </component>
 </module>

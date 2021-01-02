@@ -3,7 +3,9 @@ import com.tuarua.FacebookANEContext;
 import com.tuarua.fre.ANEError;
 
 /** A utility class for sharing through the graph API. Using this class requires an access token that
- * has been granted the "publish_actions" permission.*/
+ * has been granted the "publish_actions" permission.
+ * Android only
+ * */
 public class ShareApi {
     private var _id:String;
 
