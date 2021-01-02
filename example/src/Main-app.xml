@@ -30,6 +30,7 @@
     <extensionID>androidx.browser.browser</extensionID>
     <extensionID>com.parse.bolts.bolts-android</extensionID>
     <extensionID>com.facebook.android.facebook-android-sdk</extensionID>
+    <extensionID>com.android.installreferrer.installreferrer</extensionID>
   </extensions>
   <android>
     <manifestAdditions><![CDATA[<manifest android:installLocation="auto">

@@ -1,3 +1,13 @@
+### 1.6.0 
+- AND: Updated to FreKotlin 1.42.0
+- iOS: Updated to FreSwift 5.1.0
+- Upgraded to AIR 33.1.1.345
+- iOS: upgrade to 8.2.0 FBSDK
+- Android: upgrade to 8.2.0 FBSDK
+- AND: Added com.android.installreferrer.installreferrer as dependency
+- iOS: remove ShareAPI as it is no longer supported
+- iOS/AND: added `ShareMediaContent` support for `ShareDialog`
+
 ### 1.5.0 
 - AND: Updated to FreKotlin 1.41.0
 - iOS: Updated to FreSwift 5.0.0

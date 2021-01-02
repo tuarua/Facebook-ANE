@@ -47,10 +47,7 @@ import com.facebook.share.model.ShareContent
 import com.facebook.share.model.ShareLinkContent
 import com.facebook.share.widget.MessageDialog
 import com.facebook.share.widget.ShareDialog
-import com.tuarua.facebookane.extensions.ShareLinkContent
-import com.tuarua.facebookane.extensions.SharePhotoContent
-import com.tuarua.facebookane.extensions.ShareVideoContent
-import com.tuarua.facebookane.extensions.toMap
+import com.tuarua.facebookane.extensions.*
 import java.util.*
 
 @Suppress("unused", "UNUSED_PARAMETER", "UNCHECKED_CAST", "DEPRECATION")
@@ -235,7 +232,6 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
         return LoginManager.getInstance().loginBehavior.ordinal.toFREObject()
     }
 
-
     fun setLoginBehavior(ctx: FREContext, argv: FREArgv): FREObject? {
         argv.takeIf { argv.size > 0 } ?: return FreArgException()
         when (Int(argv[0]) ?: 0) {
@@ -340,6 +336,7 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
             "ShareLinkContent" -> return ShareLinkContent(freObject)
             "SharePhotoContent" -> return SharePhotoContent(freObject)
             "ShareVideoContent" -> return ShareVideoContent(freObject)
+            "ShareMediaContent" -> return ShareMediaContent(freObject)
         }
         return null
     }
@@ -408,7 +405,6 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
         return shareAPIs[id]?.canShare()?.toFREObject()
     }
 
-
     inner class ResultFacebookCallback(private val dialog: FacebookDialogBase<ShareContent<*, *>, Sharer.Result>?) : FacebookCallback<Sharer.Result> {
         override fun onSuccess(result: Sharer.Result?) {
             if (onShareSuccessCallbackId != null) {
@@ -452,7 +448,7 @@ class KotlinController : FreKotlinMainController, FreKotlinStateChangeCallback, 
 
     }
 
-    override val TAG: String?
+    override val TAG: String
         get() = this::class.java.simpleName
     private var _context: FREContext? = null
     override var context: FREContext?

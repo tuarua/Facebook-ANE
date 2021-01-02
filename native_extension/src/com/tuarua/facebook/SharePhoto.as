@@ -1,5 +1,5 @@
 package com.tuarua.facebook {
-public class SharePhoto {
+public class SharePhoto implements ShareMedia {
     private var _imageUrl:String;
     private var _isUserGenerated:Boolean;
 

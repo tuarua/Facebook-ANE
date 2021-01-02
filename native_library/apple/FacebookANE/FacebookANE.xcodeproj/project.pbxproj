@@ -17,6 +17,7 @@
 		9051961A22F798D600D51F08 /* FreSharePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9051961922F798D600D51F08 /* FreSharePhoto.swift */; platformFilter = ios; };
 		9064CF4522F5F88C00D64F71 /* FreShareLinkContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064CF4422F5F88C00D64F71 /* FreShareLinkContent.swift */; platformFilter = ios; };
 		9064CF4722F6049A00D64F71 /* SwiftController+SharingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9064CF4622F6049A00D64F71 /* SwiftController+SharingDelegate.swift */; platformFilter = ios; };
+		908089A625913CA1008520D3 /* FreShareMediaContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908089A525913CA1008520D3 /* FreShareMediaContent.swift */; };
 		90FE428E22F248320040A1EC /* FreAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FE428D22F248320040A1EC /* FreAccessToken.swift */; platformFilter = ios; };
 		90FE429622F24B8B0040A1EC /* FacebookEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FE429522F24B8B0040A1EC /* FacebookEvent.swift */; platformFilter = ios; };
 		CE05603F1FB25CE200D06976 /* FreSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE05603E1FB25CE200D06976 /* FreSwift.framework */; platformFilter = ios; };
@@ -48,6 +49,7 @@
 		9051961922F798D600D51F08 /* FreSharePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreSharePhoto.swift; sourceTree = "<group>"; };
 		9064CF4422F5F88C00D64F71 /* FreShareLinkContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreShareLinkContent.swift; sourceTree = "<group>"; };
 		9064CF4622F6049A00D64F71 /* SwiftController+SharingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftController+SharingDelegate.swift"; sourceTree = "<group>"; };
+		908089A525913CA1008520D3 /* FreShareMediaContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreShareMediaContent.swift; sourceTree = "<group>"; };
 		90FE428D22F248320040A1EC /* FreAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreAccessToken.swift; sourceTree = "<group>"; };
 		90FE429522F24B8B0040A1EC /* FacebookEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookEvent.swift; sourceTree = "<group>"; };
 		CE05603E1FB25CE200D06976 /* FreSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FreSwift.framework; path = Carthage/Build/iOS/FreSwift.framework; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				9051961522F7964700D51F08 /* FreShareVideoContent.swift */,
 				9051961722F7974B00D51F08 /* FreShareVideo.swift */,
 				9051961922F798D600D51F08 /* FreSharePhoto.swift */,
+				908089A525913CA1008520D3 /* FreShareMediaContent.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -242,7 +245,7 @@
 		CE87F45D1FB259C9005CF7DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Tua Rua Ltd";
 				TargetAttributes = {
 					CE87F4741FB259DB005CF7DF = {
@@ -327,6 +330,7 @@
 				9064CF4722F6049A00D64F71 /* SwiftController+SharingDelegate.swift in Sources */,
 				9051961A22F798D600D51F08 /* FreSharePhoto.swift in Sources */,
 				9051961422F7962800D51F08 /* FreSharePhotoContent.swift in Sources */,
+				908089A625913CA1008520D3 /* FreShareMediaContent.swift in Sources */,
 				CE0560431FB25D1B00D06976 /* SwiftController.swift in Sources */,
 				90FE429622F24B8B0040A1EC /* FacebookEvent.swift in Sources */,
 				CEBD78C92057198700ABE05A /* SwiftController+FreSwift.swift in Sources */,
@@ -542,7 +546,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20;
+				MARKETING_VERSION = 1.6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tuarua.FacebookANE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -587,7 +591,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20;
+				MARKETING_VERSION = 1.6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tuarua.FacebookANE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -642,7 +646,7 @@
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.11.1;
+				minimumVersion = 8.2.0;
 			};
 		};
 		90382C372396C69B00A2F89D /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {

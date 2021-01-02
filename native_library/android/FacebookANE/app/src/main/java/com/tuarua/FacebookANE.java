@@ -19,9 +19,9 @@ import com.adobe.fre.FREContext;
 import com.adobe.fre.FREExtension;
 import com.tuarua.facebookane.KotlinController;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess"})
 public class FacebookANE implements FREExtension {
-    private String NAME = "com.tuarua.FacebookANE";
+    private final String NAME = "com.tuarua.FacebookANE";
     private static final String[] FUNCTIONS = {
              "init"
             ,"createGUID"

@@ -1,19 +1,20 @@
 {
   "name": "com.tuarua.FacebookANE",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "repository": {
     "url": "https://tuarua.github.io/air/air_packages.json"
   },
   "dependencies": {
-    "com.tuarua.frekotlin": "1.41.0",
+    "com.tuarua.frekotlin": "1.42.0",
     "com.google.code.gson.gson": "2.8.6",
     "androidx.legacy.legacy-support-v4": "1.0.0",
     "androidx.appcompat.appcompat": "1.0.0",
     "androidx.cardview.cardview": "1.0.0",
     "androidx.browser.browser": "1.0.0",
     "com.parse.bolts.bolts-android": "1.4.0",
-    "com.facebook.android.facebook-android-sdk": "5.13.0",
-    "com.tuarua.iOS.FreSwift": "5.0.0",
-    "com.tuarua.FacebookANE.IosDependencies": "1.5.0"
+    "com.android.installreferrer.installreferrer": "1.0",
+    "com.facebook.android.facebook-android-sdk": "8.2.0",
+    "com.tuarua.iOS.FreSwift": "5.1.0",
+    "com.tuarua.FacebookANE.IosDependencies": "1.6.0"
   }
 }
